@@ -10,6 +10,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 
 
+
 \chapter{Introduction}
 
 Every dissertation should have an introduction.  You might not realize
@@ -90,6 +91,45 @@ command with the label you gave to the record in question. The final steps are:
 run LaTeX once, run BibTeX, and then run LaTeX twice more. You should now have
 a bibliography that includes those citations.
 
+\chapter{Methods}
+There were several things I worked on. The first is a review of different sensor technologies and subsubsequent testing of the top ones. Next was the development for the Zero G Parabolic Flight which are scheduled for the summer. Third was simulating microgravity and testing them. Fourth was seeing the impact of pose on the resulting steps and final measurements.
+
+I did a review of the sensor technologies out there excluding the commercial systems mentioned in previous works. I looked up their specs such as resolution, depth accuracy, and frame rate. I then benchmarked them on depth accuracy, temporal noise, spatial noise, and fill rate. These benchmarks were also done at varying distances. To do so, I made a simple setup. I used an imaging chart and a laser measure. I used 10 frames for each test. \hilight{The setup is shown here}
+
+Machine Learning and Deep Learning work very well in many domains. 
+
+One such deep learning method that is used for 3d data inputs are graph neural networks. The one I used specifically is called dynamic graph convolutional neural network (dgcnn). It consists of n vertices, each of which are tuple of 3 numbers. In order to apply the convolution operator, one must define an edge. With 2d images, an edge is any pixel that is adjacent to another pixel within the kernel length. For a graph, different distance metrics can be used. Dgcnn uses pairwise euclidean distances. The k nearest points are used for the subsequent convolution. Next comes the convolution kernel, which the authors define as
+\begin{equation}
+	E_ij = ReLU(\theta_i * (x_j - x_i) + \theta_j * x_i)
+\end{equation}
+Then comes max pooling for all such node j in the neighboring set of node i:
+\begin{equation}
+F_ij = Max(E_{ij})
+\end{equation}
+Before the point cloud goes into this architecture, they apply a matrix transformation using the coordinates and the differences with their neighbors.
+They prove certain desirable properties such as permutation invariance and translation invariance. And achieve state of the art results on classification and segmentation in June 2019.
+While they used their architecture for classification and segmentation, I convert it into regression for use in an automated caesar point placement. In Caesar, 75 landmarks are manually picked which allows a standardized template of 60k nodes to fit to the original mesh that has several hundred thousand points. Usually this takes several minutes for an expert user and can take up to an hour for a beginner.
+A landmark is defined as an (x, y, z) coordinate and there are 225 such numbers that are needed to be predicted in a regression case. The other method is segmentation, which is reduced to classification of each point. In which there will be several hundred thousand points which will each need to be classified into 75 classes. Resulting in many predictions and some of these predictions may not even be exactly precise as the landmarks may not coincide directly with a point. It is hypothesized that training maybe easier in the beginning; however, in the long term one would expect a degradation in results because their is much noise. This noise comes from the fact that many points don't belong, and only 75 are really needed. With regression, one can predict the exact point and get to perfect performance. But the beginning of training may be more difficult as the predictions are totally random and the errors will be large.
+
+In order to choose the best sensor one could use intermediate metrics that define how good that sensor or one could use all of those sensors in the overall imaging setup and analysis and see which one works the best. Ideally, both should be done. I started with the first. The metrics thus defined are Z-accuracy, Fill Rate, spatial noise, and temporal noise. The Z-accuracy says how accurate the depth sensor is in relation to a ground truth(GT). We average the differences in depth sensor value and ground truth. Each metric is for a given single frame and was then average across 10 frames.
+\begin{equation}
+	z-accuracy = \frac{1}{n}\sum_p(Image - GT) \forall p \in box
+\end{equation}
+The fill rate relates to how many of the depth pixels are valid. This is useful as some sensors have high accuracy but low fill rate. This is the percentage of pixels that are non-zero.
+\begin{equation}
+	Fill-rate = \frac{\sum_p[I_p >= 0]}{\vert p \vert} \forall p \in box
+\end{equation}
+Spatial noise I define as the standard deviation divided by the mean distance.
+The RMS error or spatial noise is useful to determine the x-y noise from a plane that is approximately equidistant from the imaging sensor.
+\begin{equation}
+	noise = \sqrt{\frac{1}{n-1}\sum_p(I_p-{\bar{I_p}})^2} \forall p \in box
+\end{equation}
+Last comes the temporal noise. Which is esentially the same as spatial noise except we take it across frames of the same pixel location.
+\begin{equation}
+	temporal-noise = \sum_p\sqrt{\frac{1}{n-1}\sum_{f=1}^{10}(I_{pf}-\bar{I_p})^2} \forall p \in box
+\end{equation}
+These 4 metrics are what I test. In addition to that, I compare things such as frame rate, field of view, weight, dimensions, resolution, sdks, minimum z distance and maximum z distance.
+\chapter{Results}
 \chapter{Conclusion}
 
 This is going to be the chapter where I check the length of the page to make
