@@ -13,19 +13,10 @@
 
 \chapter{Introduction}
 
-Dual-energy x-ray absorptiometry (DXA) is commonly used to measure bone density by measuring the abosrption of soft tissue and bone using dual x rays \cite{albanese2003clinical}. The radiation used is considered lower than normal; however, they should still be minimized in their usage which is why one would not want to take these every single day for example both for thealth impacts and costs. Due to it's versatility, DXA can also be used for total body composition and fat content measurement.
+Every dissertation should have an introduction.  You might not realize
+it, but the introduction should introduce the concepts, background,
+and goals of the dissertation.
 
-Body composition comprises of fat, bone, water, and muscle percentage. In what is known as the four compartment model \cite{fuller1992four}:
-\begin{equation}
-	\frac{1}{D_b} = \frac{w}{D_w} + \frac{f}{D_f} + \frac{p}{D_p} + \frac{m}{D_m}
-\end{equation}
-Db: overall body density, w: proportion of water, f: proportion of fat, p:proportion of protein, m: proportion of mineral, Dw: density of water, Df: density of fat, Dp: density of protein, Dm: density of mineral
-
-Bio-electrical impedance (BIA) is used to measure volumnes, shape, or tissue electrical properties using a the general formula \cite{jaffrin2008body}:
-\begin{equation}
-	Z = \frac{\rho L}{A}
-\end{equation}
-$\rho$ is the resistance which is a metric of the tissue. L is the distance between the electrodes placed on the body. A is the area. Z is the impedance. By placing an electrode on the person's right hand and foot and sending a current through the body one measures the voltage and current with respect to time on each electrode and can determine body water and subsequently body fat. Fat and bone have higher resistance than fluid and electrolytes and thus the electrons travel differently through these mediums.
 Examples of great literature can be found in table \ref{tab:example-1}.
 
 %% Here is an example of how to create a floating table. Note that the caption
@@ -57,35 +48,48 @@ Examples of great literature can be found in table \ref{tab:example-1}.
 
 \chapter{Previous Work}
 
-Previous work on this included a variety of 3d scanning machines. 
-\begin{figure}[h]
-	\caption{Fit3d scanner}
-	\centering
-\includegraphics{images/fit3d.png}
-\end{figure}
-\begin{figure}[h]
-	\caption{Naked Labs Scanner}
-	\centering
-\includegraphics{images/nakedlabs.png}
-\end{figure}
-\begin{figure}[h]
-	\caption{Styku scanner}
-	\centering
-\includegraphics{images/styku.png}
-\end{figure}
-\section{3d optical scanners}
-\begin{figure}[h]
-	\caption{Sizestream scanner}
-	\centering
-\includegraphics{images/sizestream.png}
+Some other research was once performed. You can check out a beautiful picture
+in figure \ref{fig:example-1}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics{example-figure.eps}
+  \caption{An example of included Encapsulated PostScript (EPS).}
+  \label{fig:example-1}
 \end{figure}
 
-These scanners are all good and use a variety of kinect sensors and intel sensors.
-They are good but rather inflexible in serving the purpose of imaging in space. As such, I built my own system for this. The software for these systems is not open source and depends heavily on the precise geometry of these systems
+\section{URLs}
+In this modern age, you may find that you wish to include URLs or pathnames
+which both tend to be long and hard for TeX to deal with because it doesn't
+know where to insert linebreaks. The ``{\tt url}'' package (loaded in the main
+uhtest.tex file) allows one to deal with these URLs. For example:
 
-\section{depth imaging}
+Here is an URL which cannot be broken, leading to terrible output
+$<$http://www.hotwired.com/webmonkey/98/16/index2a.html$>$
+%% The "<>" have to be entered in math mode, that's where the "$"s come from.
 
-Next I review one of the most fundamental work on 3d imaging \cite{izadi2011kinectfusion}. KinectFusion: Real-Time Dense Surface Mapping and Tracking was a seminal work in which Microsoft developed a time of flight sensor and developed algorithms for real time reconstruction of a scene. Their method comprises of 4 main parts. Part 1 is the surface measurement, which includees the raw depth measurements along with a dense vertex map and normal pyramid map being generated. Part 2 is the sensor pose estimation which is done by predicting the what the surface should be like from the previous data and using multi-scale iterative closest points to the current data. Part 3 is updating the reconstruction by fusing the current measurement with the scene model which is maintained with a truncated signed distance function. The final part is predicting the surface from part 3 which feeds back into part 2.
+Using the package we get the much nicer \url{<http://www.hotwired.com/
+webmonkey/98/16/index2a.html>} which LaTeX can handle just fine. Even better,
+the parameter to {\tt $\backslash$url} can have spaces inserted anywhere so you
+can make the LaTeX source lines in your text editor wrap nicely.
+
+A few notes. It is recommended that you enclose your URLs in ``$<>$'' to ensure
+that any punctuation around the URL won't be confused as part of the URL. You
+can use URLs in your bibliography too (see the {\tt uhtest.bib} file for an
+example). Finally, if you need to use a tilde in your URL then things are a
+little trickier. One way to do it is like this:
+\url{<http://www.dartmouth.edu/}$\sim$\url{jonh/ff-cache/1.html>}. The {\tt
+$\backslash$url} style uses math mode internally, so we break the URL into two
+pieces, and stick a tilde from math mode inbetween the two parts.
+
+\section{Bibliography Citations}
+Citing references to your bibliography is easy \cite{lamport:latex}
+\cite{patashnik:bibtex}. First you build a BibTeX file which contains the
+records for all of the works you wish to cite. This file ends with a ``{\tt
+.bib}'' extension. Then in your body you use the ``{\tt $\backslash$cite}''
+command with the label you gave to the record in question. The final steps are: 
+run LaTeX once, run BibTeX, and then run LaTeX twice more. You should now have
+a bibliography that includes those citations.
 
 \chapter{Methods}
 There were several things I worked on. The first is a review of different sensor technologies and subsubsequent testing of the top ones. Next was the development for the Zero G Parabolic Flight which are scheduled for the summer. Third was simulating microgravity and testing them. Fourth was seeing the impact of pose on the resulting steps and final measurements.
