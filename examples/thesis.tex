@@ -38,10 +38,16 @@
 %%% Load some useful packages:
 %% New LaTeX2e graphics support
 \usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{longtable}
+\usepackage{booktabs}
 %% Package to linebreak URLs in a sane manner.
+\usepackage{subcaption}
+\usepackage{caption}
 \usepackage{url}
 \usepackage{color}
 \usepackage{graphicx}
+\usepackage{siunitx}
 \newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
 %%% Declarations for Front Matter. Capitalize all of these values
 %%% "normally". This allows the document class to format them properly.
@@ -57,13 +63,12 @@
 %% Type of degree to be conferred.
 \degree{Master of Science}
 %% This is the chairperson of your committee. Do not use titles like Dr.
-\chair{Peter Sadowski}
+\chair{John Shepherd}
 %% The other members of your committee, seperated by "\\". Again, no titles,
 %% and it is customary to list the outside committee member (if you have one)
 %% last.
-\othermembers{John Shepherd\\
-Kyungim Baek\\
-Dan Suthers}
+\othermembers{Peter Sadowski\\
+Kyungim Baek}
 %% The field in which you are obtaining your degree, capitalized normally.
 \field{Computer Science}
 %% If your discipline allows subfields, you can add it here. Note that this
