@@ -11,6 +11,9 @@
 *.png
 *.jpg
 
+## Ply files
+*.ply
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
