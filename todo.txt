@@ -1,0 +1,6 @@
+finish sensor comparison
+scale the images
+need to add more sources to bib
+custom images for the scanners
+explain the gradient boosting
+

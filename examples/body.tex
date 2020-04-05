@@ -136,7 +136,7 @@ Several papers have done sensor testing with depth cameras. Overall methodology 
 \chapter{Methods}
 There were several things I worked on. The first is a review of different sensor technologies and subsubsequent testing of the top ones. Next was the development for the Zero G Parabolic Flight which are scheduled for the summer. Third was simulating microgravity and testing them. Fourth was seeing the impact of pose on the resulting steps and final measurements.
 
-I did a review of the sensor technologies out there excluding the commercial systems mentioned in previous works. I looked up their specs such as resolution, depth accuracy, and frame rate. I then benchmarked them on depth accuracy, temporal noise, spatial noise, and fill rate. These benchmarks were also done at varying distances. To do so, I made a simple setup. I used an imaging chart and a laser measure. I used 10 frames for each test. \hilight{The setup is shown here}
+I did a review of the sensor technologies out there excluding the commercial systems mentioned in previous works. I looked up their specs such as resolution, depth accuracy, and frame rate. I then benchmarked them on depth accuracy, temporal noise, spatial noise, and fill rate. These benchmarks were also done at varying distances. To do so, I made a simple setup. I used an imaging chart and a laser measure. I used 10 frames for each test.
 
 Machine Learning and Deep Learning work very well in many domains. 
 
@@ -219,11 +219,11 @@ The specific maneuver of the aircraft is ascending at \ang{45} followed by flatt
 The specific parts that were used are as follows 1 inch diameter steel flange for attachment of the pole to the platform. The pole used is metal for the parabolic flight and pvc for adjustable lengths on ground. Screws were used to attached the flange to the platform. 4 holes were drilled into the platform for attachment to the plane floor using AN6 steel bolts. A tight plastic cap was attached the top opening of the pole to soften any physical impact. Threaded clamps were used to attach the sensors to the pole at adjustable positions.
 
 \section{Creating the ideal imaging setup on plane vs on ground}
-There are a few differences with the ideal imaging setup on plane vs on ground. One such being timing. As each parabolic arc is limited to only 8-15 seconds of microgravity. So we only could shoot for 8 seconds at max to be safe. While on the ground, time is only a concern due to funding for the subject's time and their availability. Thus when choosing the best parameters on ground. I tested various setups. This included sensor type, frame rate, sensor height, rotation speed, laser power, minimizing laser interference. All included in the table \hilight{below}.
+There are a few differences with the ideal imaging setup on plane vs on ground. One such being timing. As each parabolic arc is limited to only 8-15 seconds of microgravity. So we only could shoot for 8 seconds at max to be safe. While on the ground, time is only a concern due to funding for the subject's time and their availability. Thus when choosing the best parameters on ground. I tested various setups. This included sensor type, frame rate, sensor height, rotation speed, laser power, minimizing laser interference. All included in the appendix.
 \section{body imaging on babies}
-Body imaging on babies is difficult because babies have trouble standing on their own. So typically they are imaged lying down. A result of this is the backside can not get imaged. The method we tried using to get a mesh of babies was \hilight{smil}. After getting it set up we got some preliminary results on fake babies that looked good. The original plan was to see how this could be used for this project too. As there are some cases where the entire body may not be able to be imgaed. This includes on an inversion table where the back is once again obscured from view of the sensors regardless of positioning. Another is the timing issue on the parabolic flights in which one could stitch together an incomplete view of the person if needed. With regards to the specifics of SMIL. We have rgb images of a baby. Depth images are in 16 and 24 bit, along with a segmented mask. The test images all have values between 791 and 957. While my images were between 0 and 255, so I added 791 to all the values. Since it was doing a cutoff at 65k, and treating the pixel values of 0 as missing. The table segmentation needs to be manually adjusted however as this affected the energy terms and subsequent mesh generation.
+Body imaging on babies is difficult because babies have trouble standing on their own. So typically they are imaged lying down. A result of this is the backside can not get imaged. The method we tried using to get a mesh of babies was a technique called SMIL\cite{hesse2018learning}. After getting it set up we got some preliminary results on fake babies that looked good. The original plan was to see how this could be used for this project too. As there are some cases where the entire body may not be able to be imgaed. This includes on an inversion table where the back is once again obscured from view of the sensors regardless of positioning. Another is the timing issue on the parabolic flights in which one could stitch together an incomplete view of the person if needed. With regards to the specifics of SMIL. We have rgb images of a baby. Depth images are in 16 and 24 bit, along with a segmented mask. The test images all have values between 791 and 957. While my images were between 0 and 255, so I added 791 to all the values. Since it was doing a cutoff at 65k, and treating the pixel values of 0 as missing. The table segmentation needs to be manually adjusted however as this affected the energy terms and subsequent mesh generation.
 \section{3d mesh modeling of humans}
-A few methods were tried out such as recent deep learning methods \hilight{that take in an rgb image and produce a mesh}. Also the classic kinect fusion code was tried out \hilight{paper}. Finally a high level library of the kinect fusion code was used \hilight{recfusion}.
+A few methods were tried out such as recent deep learning methods \cite{kolotouros2019learning}. Also the classic kinect fusion code was tried out \cite{izadi2011kinectfusion}. Finally a high level library of the kinect fusion code was used.
 \section{microgravity simulation}
 
 Below is one such example of microgravity simulation.
@@ -284,13 +284,6 @@ Here is the chart for fill rate. At first this metric may not seem that importan
 
 \subsection{sensor specs}
 The d435 is capable of reaching up to 100 frames per second which for this particular imaging application is not that useful, but an application in like drones for example, it could be more useful. One thing to note is that 100 frames per second is a lot especailly when combined with multiple sensors and a high quality data connection and cpu is needed to transfer the data fast enough. One can refer to the specs for more details and I just outline some of the main findings. The strong point of the azure kinect is it's large field of view in certain settings of \ang{120} by \ang{120}. While the d435 has a max depth resolution of 1280 x 720. The depth field of view for the d435 is \ang{85.2} horizontal and \ang{58} vertical. At first it was unclear the advantage this would bring but after testing, I realized the field of view is very useful in allowing the sensor to get closer to the target and allow the target to remain in the field of the view of the sensor. As getting as close as possible is very helpful. The azure kinect is meant for closer range solution as the operating range varies between modes but the low end is 0.25m and the high end is 5.46m. While the d435 boasts a max range of 15m, it can only get 1m close. So just comparing this, the azure kinect is preferred for this use case. Next I do a quick review of the color sensor. When I first spec'd these out, I didn't know the impact but after working with sensors and methods, the current methods primarily rely on the depth sensor information. It is only in the case of calibration in which the sensor configuration is changing that the color sensor is used to locate the physical calibration boards using color features. But when building up the mesh of the scene, is the depth sensor that is being used and the color sensor has no use currently, although it could potentially as it provides information unavailable in the depth sensor.
-\section{SMIL}
-Smil sample output:
-\begin{figure}[h]
-	\caption{SMIL sample output}
-	\centering
-	\includegraphics[]{images/smil.png}
-\end{figure}
 
 
 \section{automated anthropometry results}
@@ -376,7 +369,19 @@ Previous best results for RMSE on male were 3.07kg and 2.63kg for female while t
 The fligh was postponed. Several tries were done. Originally a multi-post base was designed. This added support but also complexity. Which is why a single pole was chosen over it. Along with this, the single pole was quite stable as the weight of the sensors is light.
 
 \section{3d imaging testing results}
-Results were as follows and are provided in the \hilight{figures}. 
+
+\begin{figure}[h]
+	\caption{Single d435 sensor moving imaging}
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/dustin.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Single d435 sensor moving imaging form fitting}
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/mw_form.png}
+\end{figure}
+
 
 
 \begin{figure}[h]
@@ -391,6 +396,41 @@ Results were as follows and are provided in the \hilight{figures}.
 	\centering
 	\includegraphics[width=0.2\textwidth]{images/6fps_mannequin.png}
 \end{figure}
+
+\begin{figure}[h]
+	\caption{Mannequin imaged with a laser on and off}
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/laser.png}
+\end{figure}
+
+
+\begin{figure}[h]
+	\caption{Mannequin 90fps, 30fps, and 6fps, at full rotation speed}
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/framing.png}
+\end{figure}
+
+
+\begin{figure}[h]
+	\caption{Mannequin 100, 50, 9 percent speeds}
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/rotation.png}
+\end{figure}
+
+\begin{figure}[h]
+	\caption{Mannequin Depth resolution of 1280x720, 640 x 480, 480 x 270}
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/depth_resolution.png}
+\end{figure}
+
+
+\begin{figure}[h]
+	\caption{Mannequin ideal}
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/man_ideal.png}
+\end{figure}
+
+
 
 We can see how at this setting, a higher frame rate helps with the imaging. There is more noise at 6 frames per second and it looks like the background is more part of the body because the sensor has more difficulty tracking the larger change in positioning of the mannequin.
 \begin{figure}[h]
@@ -416,10 +456,4 @@ We can see how at this setting, a higher frame rate helps with the imaging. Ther
 I did a comparison of various 3d imaging sensors. I found that the closer the sensor to the object, the less spatial noise; however there is a certain minimum distance for each sensor that it can image.So in general one wants to get the sensor as close as possible beyond this minimum distance. The D435 had the lowest error when using a stationary target. The temporal noise for the sensors were all extremely low. Fill rate had interesting results with the Kinect 360 having the highest fill rate. While the azure kinect had the lowest fill rate. One can clearly see the poor fill rate when looking at the depth image of the azure kinect. It would seem like one of the reasons they did this was to boost the accuracy of the sensor on pixels it was sure of. While the previous kinects have these edge problems, they still reported a value regardless of its accuracy.
 
 The graph neural network is the first method to use deep learning to automatically pick caesar points. The performance could be greatly improved with more data. Currently only about 1500 scans were used. This is because each scan also has to be human labelled with 75 points which is time consuming.
-
-\section{Widgets}
-\subsection{Sub-Widgets}
-\subsubsection{Sub-Sub-Widgets}
-\paragraph{Para-Widgets}
-\subparagraph{Sub-Para-Widgets}
 
