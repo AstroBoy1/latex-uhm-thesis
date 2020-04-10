@@ -312,6 +312,14 @@ The d435 is capable of reaching up to 100 frames per second which for this parti
 We can see the training and validation errors quickly go down after about 10 epochs possibly from simply predicting the mean value of the output, then continues to go down very slowly. There is no sign of overfitting as the validation loss and training loss are similar to each other. Because only 1024 points are used, this greatly inhibits the capability of the netowrk to learn but was used for quick demonstration purposes. The number does not give me much intuition about the quality of the points. There are a couple ways to do this. One is to see how the final body shape composition results are and the other is to visualize the data. I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm  I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm. 
 
 \begin{figure}[h]
+	\caption{Mesh colored by labels}
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/mesh_coloring.png}
+\end{figure}
+
+For segmentation, I frame the problem in terms of classification.
+
+\begin{figure}[h]
 	\caption{Missing data}
 	\centering
 	\includegraphics[]{images/missing_data.png}
