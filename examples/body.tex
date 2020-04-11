@@ -95,6 +95,9 @@ The ply file is similar to the obj file. There is also the option for encoding a
 
 The PP file is esentially an XML format with a few components. The PickedPoints class, the document data which can contain some optional information such as : time, username, filename, and template name. Next it includes the points which in this case are for the caesar dataset. There are 75 landmarks which x, y, and z coordinates. Along with anatomical name of that point.
 
+\section{Caesar Dataset}
+The Ceasar dataset (Civillian American and European Surface Anthropometry Resource) was a project by SAE whence they collected data on 2400 US and Canadians and 2000 Europeans. 75 landmarks were taken on each of them, 3d model scans, traditional 1d measurements done with a tape measure and caliper. They include demographic information of their participants who range from ages 18-65. The 75 landmarks which I try to automatically find include points such as the sellion, iliocristale, metacarpal-phalangeal, dactlyion, tip of the nose, and so forth across the entire body. Why this is done is because they thought these points are indicative of key features of people which can provide pertinent information for use in various algorithms such as deforming a template mesh to a scanned mesh. Ideally, an algorithm could pick which points are important if necessary and disregard this.
+
 \chapter{Previous Work}
 
 Previous work on this included a variety of 3d scanning machines. 
@@ -136,6 +139,13 @@ One of the seminal deep learning papers on 3d input was PointNet \cite{DBLP:jour
 
 \section{Sensor testing}
 Several papers have done sensor testing with depth cameras. Overall methodology was studied on these papers \cite{sophian2017evaluation} \cite{khoshelham2012accuracy} \cite{langmann2012depth} \cite{sankowski2017estimation}.
+
+
+\section{Landmark prediction}
+No previous paper has showed automated results on 75 points. Here is some previous work however. In Lu and Wang's work \cite{lu2008automated} they use 3d scanners and first segment the body by using silhouette analysis. Initial searches are using vertical and horizontal manual estimates. Gray-scale detection is used for identification of armpits. Following the contour of the human-body they extract more points including cervical, bust, etc, for a total of twelve landmarks. They validate on 189 subjects. In Semi-Automatic Prediction of Landmarks on Human Models in Varying Poses a Markov Network is used. The graph however is obtained manually. 200 people are used \cite{wuhrer2010semi}. Parametric body shape models were created for standing children aged 3-11 years but not adults \cite{park2015parametric}. Several models take in several depth frame data to create a shape model \cite{deng2019neural}.Lu matches the point clouds, generates a skeleton, and uses iterative linear blend skinning for learning joints \cite{lu20193d}. Stanford developed a similar idea by first registering meshes, then using a graphical model, segementation with EM to get 15 parts of a human model using the concept of rigid skeleton parts which are transformed across sequences \cite{anguelov2012recovering}.
+
+\section{Mesh quality}
+I briefly go over some mesh quality works. Most compare a mesh reference to a new mesh in the cases of compression for example to see the resulting quality.
 
 \chapter{Methods}
 There were several things I worked on. The first is a review of different sensor technologies and subsubsequent testing of the top ones. Next was the development for the Zero G Parabolic Flight which are scheduled for the summer. Third was simulating microgravity and testing them. Fourth was seeing the impact of pose on the resulting steps and final measurements.
