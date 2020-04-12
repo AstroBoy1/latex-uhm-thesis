@@ -78,9 +78,10 @@
     columns/.style={column type={|l|}},
     columns/.style={column type={|l}},
     columns/.style={column type={|l}},
+    columns/.style={column type={|l}},
     every head row/.style={before row=\hline,after row=\hline},
     every last row/.style={after row=\hline},
-    ]{tables/test2.csv}
+    ]{tables/test.csv}
 \end{table}
 
 
@@ -94,11 +95,66 @@
     columns/.style={column type={|l}},
     columns/.style={column type={|l|}},
     columns/.style={column type={|l}},
-    columns/.style={column type={|l}},
-    columns/.style={column type={|l}},    
     every head row/.style={before row=\hline,after row=\hline},
     every last row/.style={after row=\hline},
-    ]{tables/test.csv}
+    ]{tables/test2.csv}
 \end{table}
 
+\begin{table}[!h]
+\caption{Table Sensor Accuracy}
+\centering
+\pgfplotstabletypeset[
+    col sep=comma,
+    string type,
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l|}},
+    columns/.style={column type={|l}}, 
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l|}},
+    columns/.style={column type={|l}},
+    every head row/.style={before row=\hline,after row=\hline},
+    every last row/.style={after row=\hline},
+    ]{tables/accuracy.csv}
+\end{table}
+% Setup siunitx:
+\sisetup{
+  round-mode          = places, % Rounds numbers
+  round-precision     = 2, % to 2 places
+}
+\begin{table}[!h]
+\caption{Table Sensor Temporal Noise}
+\centering
+\pgfplotstabletypeset[
+    col sep=comma,
+    string type,
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l|}},
+    columns/.style={column type={|l}}, 
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l|}},
+    columns/.style={column type={|l}},
+    every head row/.style={before row=\hline,after row=\hline},
+    every last row/.style={after row=\hline},
+    ]{tables/temporal-noise.csv}
+\end{table}
+
+\begin{table}[!h]
+\caption{Table Fill Rate}
+\centering
+\pgfplotstabletypeset[
+    col sep=comma,
+    string type,
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l|}},
+    columns/.style={column type={|l}}, 
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l|}},
+    columns/.style={column type={|l}},
+    every head row/.style={before row=\hline,after row=\hline},
+    every last row/.style={after row=\hline},
+    ]{tables/fill-rate.csv}
+\end{table}
 

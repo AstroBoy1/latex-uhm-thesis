@@ -50,6 +50,11 @@
 \usepackage{siunitx}
 \usepackage{pgfplotstable}
 \usepackage{graphics}
+% Setup siunitx:
+\sisetup{
+  round-mode          = places, % Rounds numbers
+  round-precision     = 2, % to 2 places
+}
 \newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
 %%% Declarations for Front Matter. Capitalize all of these values
 %%% "normally". This allows the document class to format them properly.
