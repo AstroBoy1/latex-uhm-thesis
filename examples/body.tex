@@ -74,7 +74,7 @@ Here I describe a few file formats that are in use for further clarity of this d
 
 
 Beginning with the obj file, this file is a human readable format. It contains information for the position of each vertex, the UV position of texture coordinates, vertex normal, and faces. Vertices are listed in counter-clockwise order. A vertex is represented as v x y z. Vertex normals are optional because faces define them. They are represented like vn x y z. Optionally, one can specify textures with vt u v. Generally a face will be defined as f v1 v2 v3. The one main requirement for an obj is the vertices. When opening this in a viewer, one can see the points. Many computer graphics, 3d printing and game rendering engines also require the face information to connect the dots along with texture information for how the faces look. In this project, only vertices and face information is used.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Obj File Example}
 	\centering
 	\includegraphics[width=0.3\textwidth]{images/obj_file.png}
@@ -82,12 +82,12 @@ Beginning with the obj file, this file is a human readable format. It contains i
 \
 The ply file is similar to the obj file. There is also the option for encoding and compression of this file; otherwise the file is human readable like the obj file. A plus to this format over the obj file is the ease of adding color information. In general the file format is similar. There is the list of vertices and faces and when one wants to add color to a face one can specify a tuple such as (r, g, b) to represent the red green blue values for that face. 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Ply File Example}
 	\centering
 	\includegraphics[width=0.3\textwidth]{images/ply_file.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{PP File Example}
 	\centering
 	\includegraphics[width=1.1\textwidth]{images/pp_file.png}
@@ -101,23 +101,23 @@ The Ceasar dataset (Civillian American and European Surface Anthropometry Resour
 \chapter{Previous Work}
 
 Previous work on this included a variety of 3d scanning machines. 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Fit3d Scanner}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/fit3d.jpg}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Naked Labs Scanner}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/naked_labs.jpg}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Styku Scanner}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/styku.jpg}
 \end{figure}
 \section{3d Optical Scanners}
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Sizestream Scanner}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/sizestream.jpg}
@@ -144,8 +144,6 @@ Several papers have done sensor testing with depth cameras. Overall methodology 
 \section{Landmark prediction}
 No previous paper has showed automated results on 75 points. Here is some previous work however. In Lu and Wang's work \cite{lu2008automated} they use 3d scanners and first segment the body by using silhouette analysis. Initial searches are using vertical and horizontal manual estimates. Gray-scale detection is used for identification of armpits. Following the contour of the human-body they extract more points including cervical, bust, etc, for a total of twelve landmarks. They validate on 189 subjects. In Semi-Automatic Prediction of Landmarks on Human Models in Varying Poses a Markov Network is used. The graph however is obtained manually. 200 people are used \cite{wuhrer2010semi}. Parametric body shape models were created for standing children aged 3-11 years but not adults \cite{park2015parametric}. Several models take in several depth frame data to create a shape model \cite{deng2019neural}.Lu matches the point clouds, generates a skeleton, and uses iterative linear blend skinning for learning joints \cite{lu20193d}. Stanford developed a similar idea by first registering meshes, then using a graphical model, segementation with EM to get 15 parts of a human model using the concept of rigid skeleton parts which are transformed across sequences \cite{anguelov2012recovering}.
 
-\section{Mesh quality}
-I briefly go over some mesh quality works. Most compare a mesh reference to a new mesh in the cases of compression for example to see the resulting quality.
 
 \chapter{Methods}
 There were several things I worked on. The first is a review of different sensor technologies and subsubsequent testing of the top ones. Next was the development for the Zero G Parabolic Flight which are scheduled for the summer. Third was simulating microgravity and testing them. Fourth was seeing the impact of pose on the resulting steps and final measurements.
@@ -169,12 +167,14 @@ The other method considered was taking in the entire mesh including face informa
 
 Thus for automated body shape analysis a deep learning model was briefly reoriented from dgcnn. Briefly, a deep learning model was created. 5000 scans from pca to body composition, trained on this data. PackageID from fit3d, compiled database in o drive, filename to subjectID and technology sex, height, weight, bmi, ethnicity were used. Trained to dxa values. Table 1 variables in bennets paper tied to filenames for all the scanners ask Ian were used for joins. Dxa and fit3d has 2 data points for each person, 2 values were averaged. I got a basic catboost model with the non-image features. I run a graph neural network using 1024 vertices, scaled to a unit sphere and augmented. I saved .obj files into .h5 files. .h5 file needs both data and label attributes. Numpy arrays needed to be float 32, and labels as int 64. The output is regression with multiple outputs at once using the same architecture. MSE loss caused exploding gradient thus the S was removed. File named matched to subject id and the output values. 
 
+I also do segmentation which allows for a more pleasing visualization of the resulting mesh. It also helps reduce the output space of the network. This does add complexity to the labels as now each point needs to be labelled where previously only 75 points were labelled. Several options here include having a 76th category which is none of them. It's not clear the best way to label all the points though. Do I just take the closest point to the label and label that point and disregard the rest. I take the simplest approach algorithmically where I label all of the points to which label they are closest to. In some sense, we can compare this to label smoothing where we relax the confidence on the labels to help prevent overfitting.
+
 \section{3d Reconstruction}
 For 3d Reconstruction I use already known methods such as SPIN \cite{kolotouros2019learning} , Kinect Fusion, along with RecFusion.
 \section{Sensor Comparison}
 
 \subsection{Specs}
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Sensor Specs}
 	\centering
 	\includegraphics[width=0.7\textwidth, angle=0]{images/sensor_specs.png}
@@ -189,7 +189,7 @@ Next to calculate the approximate distance based on the field of view. We can do
 Where H is the horizontal distance of capture and D is the depth distance for capture.
 \subsection{Testing Setup}
 We bought and have an art easel to hold the chart. A tripod for the camera. Along with 480 LED lights 3200-5600K CRI 96+. A custom chart was bought shown in the appendix. Lights are to be positioned behind the camera at 45 degrees, with the test chart in front, figure in appendix. 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Sensor Testing Setup}
 	\centering
 	\includegraphics[width=0.5\textwidth, angle=0]{images/sensor_testing.png}
@@ -221,7 +221,7 @@ I used Catboost \cite{DBLP:journals/corr/DorogushGGKPV17} in order to model body
 The original plan was to have parabolic flights during the summer of 2020 but when we started looking into dates for zero g flights, they had regular flights then but only had research flights during the spring and fall. Thus we chose to attempt to get ready for the spring. It was a bit rushed and we almost made it, ultimately though, zero g was not able to work through some deals with other companies and coronavirus also started ramping up at that time, so the flight was postponed.
 To take a 3d imaging system aboard such a flight required certain things that other people have not taken into consideration before when imaging humans for body composition. Some systems like the naked labs scanner have a mirror which encases the sensors. This is not necessary in zero g as one does not want any object to crack the mirror and the mirror is not needed for imaging. Other scanners such as the sizestream are extremely heavy and bulky and use many sensors. The height of this is larger than 60 inches which is the maximum height an object can be when brought onto the zero g flights. Thus I built my own imaging system. After testing the sensors, I selected the best one. Then tested different imaging parameters for the software such as frame rate, distance from the sensor, etc.
 The figure below is what the general setup looks like.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Astro 3d Imaging Setup}
 	\centering
 	\includegraphics[width=0.7\textwidth, angle=-90]{images/astro_setup.jpg}
@@ -237,10 +237,10 @@ Body imaging on babies is difficult because babies have trouble standing on thei
 \section{Microgravity Simulation}
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Inversion Table}
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/inversion.jpg}
+	\includegraphics[width=0.5\textwidth]{images/inversion.jpg}
 \end{figure}
 \subsection{Underwater Imaging}
 Some other ways besides parabolic flight testing to simulate microgravity include gravity boots, inversion tables, and underwater imaging. The protocols were developed for these but scanning of participants was halted due to coronavirus. Planning for underwater imaging was briefly explored. A 2016 paper by Disney research \cite{digumarti2016underwater} used intel realsense cameras and a custom capture device. They demonstrated how calibration is different underwater along with the refraction model required. With such results, one could go on to perform 3d reconstruction from this mapping. Some things that have not been before include a complete scan of human bodies underwater which may require a scanning protocol and/or multiple sensors. These are a work in progress for this project.
@@ -261,35 +261,38 @@ Iterative closest points is as follows:
 \end{equation}
 $x_i$ and $p_i$ are corresponding points.
 While in general, there are many performance things done for this algorithm. With t representing translation and R representing rotation. We do not have to consider these because our lack of dynamacy. Thus our problem is simplified. On top of this, I perform quadric edge collapse reduction to reduce the seach space as a form of sampling \cite{hussain2004efficient}.
+The above may be considered as geometric measurments of quality, which do not correlate necessarily with human visual perception. So although I try this metric. I also try another metric, that which is the number of connected components in the graph. Where a connection between two vertices is defined as a face that includes those two vertices.
+
+It is interesting to note many previous works include mesh quality using a refernce mesh which is tried in this. But due to large variety of pose and variance caused by configuration setup, I largely do not go with this approach. Many use the similarity of the surface of the meshes and compare them that way along with visual cues if color is of importance such as contrast.
 \chapter{Results}
 \section{Sensor Testing Results}
 The below figure shows the spatial resolution per frame of the d435. This was done to test if the spatial noise changes with the number of frames and the distance. The number of frames does not appear to have an impact; however, the spatial noise is increasing relative to the distance after an adjustment to the distance. This suggests that the closer the sensor to the object the better. However, thereis a limit to how close these sensors can get.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Spatial Resolution per frame of d435}
 	\centering
-\includegraphics{images/d435_spatial_resolution.png}
+	\includegraphics[width=0.7\textwidth]{images/d435_spatial_resolution.png}
 \end{figure}
 
 Here is the chart for sensor accuracy. The average errors by sensor are: 0.864 for the D435, 1.366 for the Azure Kinect, 1.739 for the D415, 2.446 for the Kinect Windows, and 2.489 for the Kinect XBOX. While these metrics are not all precise as there is some error from the human, the results shown are averaged across multiple frames to partially counteract this.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Sensor Accuracy by Distance}
 	\centering
-	\includegraphics{images/sensor_accuracy.png}
+	\includegraphics[width=0.7\textwidth]{images/sensor_accuracy.png}
 \end{figure}
 
 For temporal noise, the D415 scored the best in this category. This is partly explained by the d435 being like the d415 except having its sensors more spread out. The winner in this category is the Kinect Azure with an average temporal noise of 0.07 percent, then comes the kinect for windows at 0.14, kinect 360 at 0.15, d415 at 0.22, and d435 and 3.99.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Sensor temporal noise by distance}
 	\centering
-	\includegraphics{images/temporal_noise.png}
+	\includegraphics[width=0.7\textwidth]{images/temporal_noise.png}
 \end{figure}
 
 Fill rate, at first may not seem that important but once you look at the actual depth images you can really see the difference between the sensors. If we exclude the kinect windows because it can't take data at 1 feet away and the kinect 360 which can't take data closer than 2 feet. The best sensors are d435 at 89.86 percent, d415 at 74.81, then Azure at 70.00. The Azure Kinect makes a very interesting design choice as the developers only keep pixels that the sensor is very confident in to maintain better accuracy. While the Kinect Windows and Kinect 360 trade this off by showing more valid pixels but have a reduced accuracy. With this judgement, it is even unclear whether the Azure kinect is even a better sensor in terms of specs as if one applied this same reduction in uncertain pixels in the kinect windows and kinect 360, those sensors may achieve comparable results.
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Fill rate of sensor by distance}
 	\centering
-	\includegraphics[]{images/fill_rate.png}
+	\includegraphics[width=0.7\textwidth]{images/fill_rate.png}
 \end{figure}
 
 \subsection{Sensor Specs}
@@ -298,30 +301,30 @@ The d435 is capable of reaching up to 100 frames per second which for this parti
 
 \section{Automated Anthropometry Results}
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Training of Automated Caeasr Point Placement}
 	\centering
-\includegraphics{images/training.png}
+\includegraphics[width=0.5\textwidth]{images/training.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Validation of Automated Caeasr Point Placement}
 	\centering
-\includegraphics{images/validation.png}
+\includegraphics[width=0.5\textwidth]{images/validation.png}
 \end{figure}
- \begin{figure}[h]
+ \begin{figure}[!htb]
 	\caption{Training of Automated Caeasr Point Placement without beginning}
 	\centering
-\includegraphics{images/train_close.png}
+\includegraphics[width=0.5\textwidth]{images/train_close.png}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Validation of Automated Caeasr Point Placement without beginning}
 	\centering
-\includegraphics{images/val_close.png}
+\includegraphics[width=0.5\textwidth]{images/val_close.png}
 \end{figure}
 
 We can see the training and validation errors quickly go down after about 10 epochs possibly from simply predicting the mean value of the output, then continues to go down very slowly. There is no sign of overfitting as the validation loss and training loss are similar to each other. Because only 1024 points are used, this greatly inhibits the capability of the netowrk to learn but was used for quick demonstration purposes. The number does not give me much intuition about the quality of the points. There are a couple ways to do this. One is to see how the final body shape composition results are and the other is to visualize the data. I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm  I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm. 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mesh colored by labels}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/mesh_coloring.png}
@@ -329,44 +332,12 @@ We can see the training and validation errors quickly go down after about 10 epo
 
 For segmentation, I frame the problem in terms of classification.
 
-\begin{figure}[h]
-	\caption{Missing data}
-	\centering
-	\includegraphics[]{images/missing_data.png}
-\end{figure}
-
-\begin{figure}[h]
-	\caption{HBA1C Distribution}
-	\centering
-	\includegraphics[width=0.5\textwidth]{images/hba1c.png}
-\end{figure}
-
-\begin{figure}[h]
-	\caption{WBTOT FAT Distribution}
-	\centering
-	\includegraphics[width=0.5\textwidth]{images/wbtot_fat.png}
-\end{figure}
-
-
-\begin{figure}[h]
-	\caption{VFAT MASS Distribution}
-	\centering
-	\includegraphics[width=0.5\textwidth]{images/vfat_mass.png}
-\end{figure}
-
-\begin{figure}[h]
-	\caption{Race Ratios Distribution}
-	\centering
-	\includegraphics[width=0.5\textwidth]{images/race_ratios.png}
-\end{figure}
-
-
 \section{Graph Neural Network and Catboost Body Composition Results}
 
 Some basic data exploration was done like counting of missing data. Distributions of the target variables were plotted, along with the features. Using catboost, after 999 iterations, I got a test RMSE mean of 2436, std of 791, train rmse mean of 1368, std of 109. The 0th iteration was 24,584 test rmse mean, 1346 std. 24,611 train rmse mean error, 336 std. In the most recent shape up paper, it was stated that the best results were 3070 for men, and 2630 for women using 3D PC + Anthro with 5 fold CV. I also tried a graph neural network. Where the data is .obj file with vertex and face information. I removed face information and sampled the vertex information. Next, I reformulated the classification architecture for regression. I did a quick test, trained only on 10 scans, after 50 epochs had about 8000 L1 loss. I also investigated sparse autoencoders, denoising, and contrastive for dimensionality reduction in comparison with principal component analysis.
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Fat Mass Training Table}
 	\centering
 	\includegraphics[width=0.9\textwidth]{images/catboost_training.png}
@@ -379,13 +350,13 @@ The fligh was postponed. Several tries were done. Originally a multi-post base w
 
 \section{3d Imaging Testing Results}
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Single d435 sensor moving imaging}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/dustin.png}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Single d435 sensor moving imaging form fitting}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/mw_form.png}
@@ -393,47 +364,47 @@ The fligh was postponed. Several tries were done. Originally a multi-post base w
 
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mannequin imaged at 90 frames per second}
 	\centering
 	\includegraphics[width=0.2\textwidth]{images/90fps_mannequin.png}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mannequin imaged at 6 frames per second}
 	\centering
 	\includegraphics[width=0.2\textwidth]{images/6fps_mannequin.png}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mannequin imaged with a laser on and off}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/laser.png}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mannequin 90fps, 30fps, and 6fps, at full rotation speed}
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/framing.png}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mannequin 100, 50, 9 percent speeds}
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/rotation.png}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mannequin Depth resolution of 1280x720, 640 x 480, 480 x 270}
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/depth_resolution.png}
 \end{figure}
 
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Mannequin ideal}
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/man_ideal.png}
@@ -442,7 +413,7 @@ The fligh was postponed. Several tries were done. Originally a multi-post base w
 
 
 We can see how at this setting, a higher frame rate helps with the imaging. There is more noise at 6 frames per second and it looks like the background is more part of the body because the sensor has more difficulty tracking the larger change in positioning of the mannequin.
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/en_inversion.png}
@@ -450,7 +421,7 @@ We can see how at this setting, a higher frame rate helps with the imaging. Ther
 
 \section{Inversion Table Imaging}
 
-\begin{figure}[h]
+\begin{figure}[!htb]
 	\caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
 	\centering
 	\includegraphics[width=0.7\textwidth]{images/mw_inversion.png}
