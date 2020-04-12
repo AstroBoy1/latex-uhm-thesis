@@ -224,7 +224,7 @@ The figure below is what the general setup looks like.
 \begin{figure}[!htb]
 	\caption{Astro 3d Imaging Setup}
 	\centering
-	\includegraphics[width=0.7\textwidth, angle=-90]{images/astro_setup.jpg}
+	\includegraphics[width=0.5\textwidth, angle=-90]{images/astro_setup.jpg}
 \end{figure}
 
 The specific maneuver of the aircraft is ascending at \ang{45} followed by flattening the plane out followed by \ang{45} nose low fall. The G-ForceOne contains 36 seats and is 60 feet long and 10 feet wide. Due to safety concerns, the maximum height of any equipment is 60 inches. The aircraft contains attach points that are 20" x 20" (+/-1/16"). Bolt spacers are used with 3/8-24UNF threaded holes along with AN6 steel bolts for securment of equipment. Other requirements included the material be at least 1/2" thick and 24" x 24" minimum. As such, a wood board was used that is 24" x 24". This was chosen over metal because of the lessening of vibration and for ease of drilling. Strap for carrying and anchoring are used including: CGU-1/B, S0203-0338-B, and 104410P. The power type aboard to be used is 115 volts ac, 60HZ, three phase. The aircraft lighting is at 5600 kelvin and are LEDs, suitable for general photography and this type of imaging. On-board tools are properly labeled and to be stored in a toolbox. Before flight, a test readiness review is required.
@@ -336,13 +336,6 @@ For segmentation, I frame the problem in terms of classification.
 
 Some basic data exploration was done like counting of missing data. Distributions of the target variables were plotted, along with the features. Using catboost, after 999 iterations, I got a test RMSE mean of 2436, std of 791, train rmse mean of 1368, std of 109. The 0th iteration was 24,584 test rmse mean, 1346 std. 24,611 train rmse mean error, 336 std. In the most recent shape up paper, it was stated that the best results were 3070 for men, and 2630 for women using 3D PC + Anthro with 5 fold CV. I also tried a graph neural network. Where the data is .obj file with vertex and face information. I removed face information and sampled the vertex information. Next, I reformulated the classification architecture for regression. I did a quick test, trained only on 10 scans, after 50 epochs had about 8000 L1 loss. I also investigated sparse autoencoders, denoising, and contrastive for dimensionality reduction in comparison with principal component analysis.
 
-
-\begin{figure}[!htb]
-	\caption{Fat Mass Training Table}
-	\centering
-	\includegraphics[width=0.9\textwidth]{images/catboost_training.png}
-\end{figure}
-
 Previous best results for RMSE on male were 3.07kg and 2.63kg for female while these results average across genders with a validation RMSE of 2.44kg. Demonstrating non-linearities in the dataset.
 
 \section{Parabolic Setup}
@@ -405,9 +398,9 @@ The fligh was postponed. Several tries were done. Originally a multi-post base w
 
 
 \begin{figure}[!htb]
-	\caption{Mannequin ideal}
+	\caption{Mannequin imaging with ideal settings}
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/man_ideal.png}
+	\includegraphics[width=0.3\textwidth]{images/man_ideal.png}
 \end{figure}
 
 
@@ -419,7 +412,7 @@ We can see how at this setting, a higher frame rate helps with the imaging. Ther
 	\includegraphics[width=0.7\textwidth]{images/en_inversion.png}
 \end{figure}
 
-\section{Inversion Table Imaging}
+
 
 \begin{figure}[!htb]
 	\caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
