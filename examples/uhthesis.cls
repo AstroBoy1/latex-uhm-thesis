@@ -198,7 +198,7 @@
         \vspace{2ex}\par
         \@papertype~Committee:\par
         \vspace{1ex}\par
-        \@chair, Chairperson\par
+
         \@othermembers\par
         \vspace{3ex}\par
         \@keywords\par

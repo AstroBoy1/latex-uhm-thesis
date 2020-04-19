@@ -5,7 +5,7 @@
 %% Last Modified By: Robert Brewer
 %% Last Modified On: Mon Oct  5 16:01:29 1998
 %% RCS: $Id: uhtest-body.tex,v 1.1 1998/10/06 02:07:14 rbrewer Exp $
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   Copyright (C) 1998 Robert Brewer
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 
@@ -15,7 +15,7 @@
 
 Long duration space flights induce loss of muscle and bone mass, which in turn leads to greater risks of injury and death. To capture such changes, body composition measures are traditionally measured through Dual-energy X-ray absorptiometry (DXA); however, this is not as feasible in space. 3D optical (3DO) imaging has been demonstrated to be able to capture body composition as well as DXA, while also being hypothesized to be more easily deployable in space because of its low power consumption, higher mobility, and retainment of accuracy. We have accurate terrestrial models and the main goal of this study is to demonstrate the feasibility of our system to capture body composition in space. 
 \section{Ways of getting body composition}
-Dual-energy x-ray absorptiometry (DXA) is commonly used to measure bone density by measuring the abosrption of soft tissue and bone using dual x rays \cite{albanese2003clinical}. The radiation used is considered lower than normal; however, they should still be minimized in their usage which is why one would not want to take these every single day for example both for thealth impacts and costs. Due to it's versatility, DXA can also be used for total body composition and fat content measurement.
+ual-energy x-ray absorptiometry (DXA) is commonly used to measure bone density by measuring the absorption of soft tissue and bone using dual x rays \cite{albanese2003clinical}. The radiation used is considered lower than normal; however, they should still be minimized in their usage which is why one would not want to take these every single day for example both for health impacts and costs. Due to it's versatility, DXA can also be used for total body composition and fat content measurement.
 
 Body composition comprises of fat, bone, water, and muscle percentage. In what is known as the four compartment model \cite{fuller1992four}:
 \begin{equation}
@@ -23,11 +23,13 @@ Body composition comprises of fat, bone, water, and muscle percentage. In what i
 \end{equation}
 Db: overall body density, w: proportion of water, f: proportion of fat, p:proportion of protein, m: proportion of mineral, Dw: density of water, Df: density of fat, Dp: density of protein, Dm: density of mineral
 
-Bio-electrical impedance (BIA) is used to measure volumnes, shape, or tissue electrical properties using a the general formula \cite{jaffrin2008body}:
+Bio-electrical impedance (BIA) is used to measure volume, shape, or tissue electrical properties using the general formula \cite{jaffrin2008body}:
 \begin{equation}
 	Z = \frac{\rho L}{A}
 \end{equation}
 $\rho$ is the resistance which is a metric of the tissue. L is the distance between the electrodes placed on the body. A is the area. Z is the impedance. By placing an electrode on the person's right hand and foot and sending a current through the body one measures the voltage and current with respect to time on each electrode and can determine body water and subsequently body fat. Fat and bone have higher resistance than fluid and electrolytes and thus the electrons travel differently through these mediums.
+
+Underwater hydrostatic weighing is also used to determine body fat to lean mass ratios based off Archimede's Principle of displacement along with the constant density of fat mass and fat-free mass.
 
 In this work, I concentrate on using imaging which has certain advantages including being non-invasive and relatively inexpensive, along with being portable.
 \section{Sensor Types}
@@ -41,7 +43,7 @@ spatial noise or spatial depth uniformity. And the temporal noise which evaluate
 uniformity over sequential frames. Other traits between sensors are mostly comparable and
 company provided specs are reasonably reliable.
 
-ToF is super-fast and the accuracy of depth is very good, but it usually suffers due to this in resolution, but they are more susceptible to light. It can be considered a type of lidar, scanner less. Time of flight uses the phase shift of amplitude modulated wave to measure the distance, while stereo is taking two pictures of the scene at different positions and generallly uses epipolar geometry. The depth depends on the reconstruction algorithm. Intel camera also have an optional infra-red used for feature matching in low contrast settings. One such way of calculating the depth from time of flight based on a simplified ideal model.
+ToF is super-fast and the accuracy of depth is very good, but it usually suffers due to this in resolution, but they are more susceptible to light. It can be considered a type of lidar, scanner less. Time of flight uses the phase shift of amplitude modulated wave to measure the distance, while stereo is taking two pictures of the scene at different positions and generally uses epipolar geometry. The depth depends on the reconstruction algorithm. Intel camera also have an optional infra-red used for feature matching in low contrast settings. One such way of calculating the depth from time of flight based on a simplified ideal model.
 
 \begin{equation}
 c = \lambda * f
@@ -93,14 +95,13 @@ The ply file is similar to the obj file. There is also the option for encoding a
 	\includegraphics[width=1.1\textwidth]{images/pp_file.png}
 \end{figure}
 
-The PP file is esentially an XML format with a few components. The PickedPoints class, the document data which can contain some optional information such as : time, username, filename, and template name. Next it includes the points which in this case are for the caesar dataset. There are 75 landmarks which x, y, and z coordinates. Along with anatomical name of that point.
+The PP file is essentially an XML format with a few components. The PickedPoints class, the document data which can contain some optional information such as : time, username, filename, and template name. Next it includes the points which in this case are for the caesar dataset. There are 75 landmarks which x, y, and z coordinates. Along with anatomical name of that point.
 
 \section{Caesar Dataset}
-The Ceasar dataset (Civillian American and European Surface Anthropometry Resource) was a project by SAE whence they collected data on 2400 US and Canadians and 2000 Europeans. 75 landmarks were taken on each of them, 3d model scans, traditional 1d measurements done with a tape measure and caliper. They include demographic information of their participants who range from ages 18-65. The 75 landmarks which I try to automatically find include points such as the sellion, iliocristale, metacarpal-phalangeal, dactlyion, tip of the nose, and so forth across the entire body. Why this is done is because they thought these points are indicative of key features of people which can provide pertinent information for use in various algorithms such as deforming a template mesh to a scanned mesh. Ideally, an algorithm could pick which points are important if necessary and disregard this.
+The Ceasar dataset (Civilian American and European Surface Anthropometry Resource) was a project by SAE whence they collected data on 2400 US and Canadians and 2000 Europeans. 75 landmarks were taken on each of them, 3d model scans, traditional 1d measurements done with a tape measure and caliper. They include demographic information of their participants who range from ages 18-65. The 75 landmarks which I try to automatically find include points such as the sellion, iliocristale, metacarpal-phalangeal, dactlyion, tip of the nose, and so forth across the entire body. Why this is done is because they thought these points are indicative of key features of people which can provide pertinent information for use in various algorithms such as deforming a template mesh to a scanned mesh. Ideally, an algorithm could pick which points are important if necessary and disregard this.
 
 \chapter{Previous Work}
 
-Previous work on this included a variety of 3d scanning machines. 
 \begin{figure}[!htb]
 	\caption{Fit3d Scanner}
 	\centering
@@ -123,6 +124,7 @@ Previous work on this included a variety of 3d scanning machines.
 	\includegraphics[width=0.5\textwidth]{images/sizestream.jpg}
 \end{figure}
 
+I start off by showing a variety of 3d scanning machines. They use kinects and intel sensors. Kinects are time of flight and intel utilize traditional stereovision.
 These scanners are all good and use a variety of kinect sensors and intel sensors.
 They are good but rather inflexible in serving the purpose of imaging in space. As such, I built my own system for this. The software for these systems is not open source and depends heavily on the precise geometry of these systems. It is important to note the differentiation between these 3d optical scanners and other 3d imaging methods such as CT scans.
 
@@ -135,22 +137,20 @@ Further information and review of state of the art methods is given in the paper
 In 2005, Brett Allen wrote his phd thesis on learning body shape models from real-world data \cite{allen2005learning}. Both sensor technology and algorithms have come a long way since then. With a major dataset coming out of an SAE project starting in 1998. This data is not public however is the first major dataset with anthropometric measurements along with 3D stitched models from scanning of 2400 men and women.
 
 \section{3d Neural Networks}
-One of the seminal deep learning papers on 3d input was PointNet \cite{DBLP:journals/corr/QiSMG16}. It was a method used for classification and part/semantic segmentation. A couple years later, dynamic graph convolutional neural network took this further by using dynamic updates to the graph \cite{DBLP:journals/corr/abs-1801-07829}. While these methods are general, there are also more specific methods for reconstruction. A systematic approach for constructing 3d human models from 2d images \cite{5645897}. The Planck Institute published results on obtaining a mesh from a single 2d image using a combination of their previous convential method and deep learning \cite{kolotouros2019learning}.The method uses a CNN followed by their previous work SMPL and these use a self improving loop. This was tried briefly in this project. Deformable Shape Completion with Graph Convolutional Autoencoders was considered as the paper shows results on taking in an essentially partial mesh and completing it \cite{litany2018deformable}. This was put on hold though because the code is not open source and would have to be re-implemented. 
+One of the seminal deep learning papers on 3d input was PointNet \cite{DBLP:journals/corr/QiSMG16}. It was a method used for classification and part/semantic segmentation. A couple years later, dynamic graph convolutional neural network took this further by using dynamic updates to the graph \cite{DBLP:journals/corr/abs-1801-07829}. While these methods are general, there are also more specific methods for reconstruction. A systematic approach for constructing 3d human models from 2d images \cite{5645897}. The Planck Institute published results on obtaining a mesh from a single 2d image using a combination of their previous conventional method and deep learning \cite{kolotouros2019learning}.The method uses a CNN followed by their previous work SMPL and these use a self improving loop. This was tried briefly in this project. Deformable Shape Completion with Graph Convolutional Autoencoders was considered as the paper shows results on taking in an essentially partial mesh and completing it \cite{litany2018deformable}. This was put on hold though because the code is not open source and would have to be re-implemented. 
 
 \section{Sensor testing}
 Several papers have done sensor testing with depth cameras. Overall methodology was studied on these papers \cite{sophian2017evaluation} \cite{khoshelham2012accuracy} \cite{langmann2012depth} \cite{sankowski2017estimation}.
 
 
 \section{Landmark prediction}
-No previous paper has showed automated results on 75 points. Here is some previous work however. In Lu and Wang's work \cite{lu2008automated} they use 3d scanners and first segment the body by using silhouette analysis. Initial searches are using vertical and horizontal manual estimates. Gray-scale detection is used for identification of armpits. Following the contour of the human-body they extract more points including cervical, bust, etc, for a total of twelve landmarks. They validate on 189 subjects. In Semi-Automatic Prediction of Landmarks on Human Models in Varying Poses a Markov Network is used. The graph however is obtained manually. 200 people are used \cite{wuhrer2010semi}. Parametric body shape models were created for standing children aged 3-11 years but not adults \cite{park2015parametric}. Several models take in several depth frame data to create a shape model \cite{deng2019neural}.Lu matches the point clouds, generates a skeleton, and uses iterative linear blend skinning for learning joints \cite{lu20193d}. Stanford developed a similar idea by first registering meshes, then using a graphical model, segementation with EM to get 15 parts of a human model using the concept of rigid skeleton parts which are transformed across sequences \cite{anguelov2012recovering}.
+No previous paper has showed automated results on 75 points. Here is some previous work however. In Lu and Wang's work \cite{lu2008automated} they use 3d scanners and first segment the body by using silhouette analysis. Initial searches are using vertical and horizontal manual estimates. Gray-scale detection is used for identification of armpits. Following the contour of the human-body they extract more points including cervical, bust, etc, for a total of twelve landmarks. They validate on 189 subjects. In Semi-Automatic Prediction of Landmarks on Human Models in Varying Poses a Markov Network is used. The graph however is obtained manually. 200 people are used \cite{wuhrer2010semi}. Parametric body shape models were created for standing children aged 3-11 years but not adults \cite{park2015parametric}. Several models take in several depth frame data to create a shape model \cite{deng2019neural}.Lu matches the point clouds, generates a skeleton, and uses iterative linear blend skinning for learning joints \cite{lu20193d}. Stanford developed a similar idea by first registering meshes, then using a graphical model, segmentation with EM to get 15 parts of a human model using the concept of rigid skeleton parts which are transformed across sequences \cite{anguelov2012recovering}.
 
 
 \chapter{Methods}
-There were several things I worked on. The first is a review of different sensor technologies and subsubsequent testing of the top ones. Next was the development for the Zero G Parabolic Flight which are scheduled for the summer. Third was simulating microgravity and testing them. Fourth was seeing the impact of pose on the resulting steps and final measurements.
+There were several things I worked on. The first is a review of different sensor technologies and subsequent testing of the top ones. Next was the development for the Zero G Parabolic Flight which are scheduled for the summer. Third was simulating microgravity and testing them. Fourth was seeing the impact of pose on the resulting steps and final measurements. In no particular order, I start off with a graph neural network.
 
-I did a review of the sensor technologies out there excluding the commercial systems mentioned in previous works. I looked up their specs such as resolution, depth accuracy, and frame rate. I then benchmarked them on depth accuracy, temporal noise, spatial noise, and fill rate. These benchmarks were also done at varying distances. To do so, I made a simple setup. I used an imaging chart and a laser measure. I used 10 frames for each test.
-
-\section{Graph Neural Network}
+\section{Graph Neural Network for Automatated Body Composition and Anthropometry}
 One such deep learning method that is used for 3d data inputs are graph neural networks. The one I used specifically is called dynamic graph convolutional neural network (dgcnn) \cite{DBLP:journals/corr/abs-1801-07829}. It consists of n vertices, each of which are tuple of 3 numbers. In order to apply the convolution operator, one must define an edge. With 2d images, an edge is any pixel that is adjacent to another pixel within the kernel length. For a graph, different distance metrics can be used. Dgcnn uses pairwise euclidean distances. The k nearest points are used for the subsequent convolution. Next comes the convolution kernel, which the authors define as
 \begin{equation}
 	E_ij = ReLU(\theta_i * (x_j - x_i) + \theta_j * x_i)
@@ -165,7 +165,7 @@ While they used their architecture for classification and segmentation, I conver
 A landmark is defined as an (x, y, z) coordinate and there are 225 such numbers that are needed to be predicted in a regression case. The other method is segmentation, which is reduced to classification of each point. In which there will be several hundred thousand points which will each need to be classified into 75 classes. Resulting in many predictions and some of these predictions may not even be exactly precise as the landmarks may not coincide directly with a point. It is hypothesized that training maybe easier in the beginning; however, in the long term one would expect a degradation in results because their is much noise. This noise comes from the fact that many points don't belong, and only 75 are really needed. With regression, one can predict the exact point and get to perfect performance. But the beginning of training may be more difficult as the predictions are totally random and the errors will be large.
 The other method considered was taking in the entire mesh including face information as done by MeshCNN \cite{hanocka2019meshcnn}. It is unclear however as to the utility of face information compared to nearest neighbor information from dgcnn. As the previous information is feature extracted through non-deep learning methods in a rather arbitrary sense while neighbor information is computed by the network.
 
-Thus for automated body shape analysis a deep learning model was briefly reoriented from dgcnn. Briefly, a deep learning model was created. 5000 scans from pca to body composition, trained on this data. PackageID from fit3d, compiled database in o drive, filename to subjectID and technology sex, height, weight, bmi, ethnicity were used. Trained to dxa values. Table 1 variables in bennets paper tied to filenames for all the scanners ask Ian were used for joins. Dxa and fit3d has 2 data points for each person, 2 values were averaged. I got a basic catboost model with the non-image features. I run a graph neural network using 1024 vertices, scaled to a unit sphere and augmented. I saved .obj files into .h5 files. .h5 file needs both data and label attributes. Numpy arrays needed to be float 32, and labels as int 64. The output is regression with multiple outputs at once using the same architecture. MSE loss caused exploding gradient thus the S was removed. File named matched to subject id and the output values. 
+Thus for automated body shape analysis a deep learning model was briefly reoriented from dgcnn. Briefly, a deep learning model was created. 5000 scans from pca to body composition, trained on this data. PackageID from fit3d, compiled database in o drive, filename to subjectID and technology sex, height, weight, bmi, ethnicity were used. Trained to dxa values. Table 1 variables in Bennets paper tied to filenames for all the scanners ask Ian were used for joins. Dxa and fit3d has 2 data points for each person, 2 values were averaged. I got a basic catboost model with the non-image features. I run a graph neural network using 1024 vertices, scaled to a unit sphere and augmented. I saved .obj files into .h5 files. .h5 file needs both data and label attributes. Numpy arrays needed to be float 32, and labels as int 64. The output is regression with multiple outputs at once using the same architecture. MSE loss caused exploding gradient thus the S was removed. File named matched to subject id and the output values. 
 
 I also do segmentation which allows for a more pleasing visualization of the resulting mesh. It also helps reduce the output space of the network. This does add complexity to the labels as now each point needs to be labelled where previously only 75 points were labelled. Several options here include having a 76th category which is none of them. It's not clear the best way to label all the points though. Do I just take the closest point to the label and label that point and disregard the rest. I take the simplest approach algorithmically where I label all of the points to which label they are closest to. In some sense, we can compare this to label smoothing where we relax the confidence on the labels to help prevent overfitting.
 
@@ -174,6 +174,10 @@ For 3d Reconstruction I use already known methods such as SPIN \cite{kolotouros2
 \section{Sensor Comparison}
 
 \subsection{Specs}
+
+I did a review of the sensor technologies out there excluding the commercial systems mentioned in previous works. I looked up their specs such as resolution, depth accuracy, and frame rate. I then benchmarked them on depth accuracy, temporal noise, spatial noise, and fill rate. These benchmarks were also done at varying distances. To do so, I made a simple setup. I used an imaging chart and a laser measure. I used 10 frames for each test.
+
+
 \begin{figure}[!htb]
 	\caption{Sensor Specs}
 	\centering
@@ -196,7 +200,8 @@ We bought and have an art easel to hold the chart. A tripod for the camera. Alon
 \end{figure}
 
 \subsection{Custom Testing Metrics}
-In order to choose the best sensor one could use intermediate metrics that define how good that sensor or one could use all of those sensors in the overall imaging setup and analysis and see which one works the best. The metrics I used are similar to the techincal report \cite{depthtesting}.Ideally, both should be done. I started with the first. The metrics thus defined are Z-accuracy, Fill Rate, spatial noise, and temporal noise. The Z-accuracy says how accurate the depth sensor is in relation to a ground truth(GT). We average the differences in depth sensor value and ground truth. Each metric is for a given single frame and was then average across 10 frames.
+
+In order to choose the best sensor one could use intermediate metrics that define how good that sensor or one could use all of those sensors in the overall imaging setup and analysis and see which one works the best. The metrics I used are similar to the technical report \cite{depthtesting}.Ideally, both should be done. I started with the first. The metrics thus defined are Z-accuracy, Fill Rate, spatial noise, and temporal noise. The Z-accuracy says how accurate the depth sensor is in relation to a ground truth(GT). We average the differences in depth sensor value and ground truth. Each metric is for a given single frame and was then average across 10 frames.
 \begin{equation}
 	z-accuracy = \frac{1}{n}\sum_p(Image - GT) \forall p \in box
 \end{equation}
@@ -209,13 +214,13 @@ The RMS error or spatial noise is useful to determine the x-y noise from a plane
 \begin{equation}
 	noise = \sqrt{\frac{1}{n-1}\sum_p(I_p-{\bar{I_p}})^2} \forall p \in box
 \end{equation}
-Last comes the temporal noise. Which is esentially the same as spatial noise except we take it across frames of the same pixel location.
+Last comes the temporal noise. Which is essentially the same as spatial noise except we take it across frames of the same pixel location.
 \begin{equation}
 	temporal-noise = \sum_p\sqrt{\frac{1}{n-1}\sum_{f=1}^{10}(I_{pf}-\bar{I_p})^2} \forall p \in box
 \end{equation}
 These 4 metrics are what I test. In addition to that, I compare things such as frame rate, field of view, weight, dimensions, resolution, sdks, minimum z distance and maximum z distance.
 
-\section{Categorical Extreme Gradient Boosting}
+\section{Categorical Extreme Gradient Boosting to Predict Body Composition Using Only Demographic Information}
 I used Catboost \cite{DBLP:journals/corr/DorogushGGKPV17} in order to model body composition using only demographic information and was able to achieve very good performance even better than previously published \cite{article} .
 \section{Parabolic Flight Setup}
 The original plan was to have parabolic flights during the summer of 2020 but when we started looking into dates for zero g flights, they had regular flights then but only had research flights during the spring and fall. Thus we chose to attempt to get ready for the spring. It was a bit rushed and we almost made it, ultimately though, zero g was not able to work through some deals with other companies and coronavirus also started ramping up at that time, so the flight was postponed.
@@ -227,13 +232,13 @@ The figure below is what the general setup looks like.
 	\includegraphics[width=0.5\textwidth, angle=-90]{images/astro_setup.jpg}
 \end{figure}
 
-The specific maneuver of the aircraft is ascending at \ang{45} followed by flattening the plane out followed by \ang{45} nose low fall. The G-ForceOne contains 36 seats and is 60 feet long and 10 feet wide. Due to safety concerns, the maximum height of any equipment is 60 inches. The aircraft contains attach points that are 20" x 20" (+/-1/16"). Bolt spacers are used with 3/8-24UNF threaded holes along with AN6 steel bolts for securment of equipment. Other requirements included the material be at least 1/2" thick and 24" x 24" minimum. As such, a wood board was used that is 24" x 24". This was chosen over metal because of the lessening of vibration and for ease of drilling. Strap for carrying and anchoring are used including: CGU-1/B, S0203-0338-B, and 104410P. The power type aboard to be used is 115 volts ac, 60HZ, three phase. The aircraft lighting is at 5600 kelvin and are LEDs, suitable for general photography and this type of imaging. On-board tools are properly labeled and to be stored in a toolbox. Before flight, a test readiness review is required.
+The specific maneuver of the aircraft is ascending at \ang{45} followed by flattening the plane out followed by \ang{45} nose low fall. The G-ForceOne contains 36 seats and is 60 feet long and 10 feet wide. Due to safety concerns, the maximum height of any equipment is 60 inches. The aircraft contains attach points that are 20" x 20" (+/-1/16"). Bolt spacers are used with 3/8-24UNF threaded holes along with AN6 steel bolts for securement of equipment. Other requirements included the material be at least 1/2" thick and 24" x 24" minimum. As such, a wood board was used that is 24" x 24". This was chosen over metal because of the lessening of vibration and for ease of drilling. Strap for carrying and anchoring are used including: CGU-1/B, S0203-0338-B, and 104410P. The power type aboard to be used is 115 volts ac, 60HZ, three phase. The aircraft lighting is at 5600 kelvin and are LEDs, suitable for general photography and this type of imaging. On-board tools are properly labeled and to be stored in a toolbox. Before flight, a test readiness review is required.
 The specific parts that were used are as follows 1 inch diameter steel flange for attachment of the pole to the platform. The pole used is metal for the parabolic flight and pvc for adjustable lengths on ground. Screws were used to attached the flange to the platform. 4 holes were drilled into the platform for attachment to the plane floor using AN6 steel bolts. A tight plastic cap was attached the top opening of the pole to soften any physical impact. Threaded clamps were used to attach the sensors to the pole at adjustable positions.
 
 \section{Creating The Ideal Imaging Setup On Plane vs On Ground}
 There are a few differences with the ideal imaging setup on plane vs on ground. One such being timing. As each parabolic arc is limited to only 8-15 seconds of microgravity. So we only could shoot for 8 seconds at max to be safe. While on the ground, time is only a concern due to funding for the subject's time and their availability. Thus when choosing the best parameters on ground. I tested various setups. This included sensor type, frame rate, sensor height, rotation speed, laser power, minimizing laser interference. A lot of the results are included in the appendix.
 \section{Body Imaging on Babies}
-Body imaging on babies is difficult because babies have trouble standing on their own. So typically they are imaged lying down. A result of this is the backside can not get imaged. The method we tried using to get a mesh of babies was a technique called SMIL\cite{hesse2018learning}. After getting it set up we got some preliminary results on fake babies that looked good. The original plan was to see how this could be used for this project too. As there are some cases where the entire body may not be able to be imgaed. This includes on an inversion table where the back is once again obscured from view of the sensors regardless of positioning. Another is the timing issue on the parabolic flights in which one could stitch together an incomplete view of the person if needed. With regards to the specifics of SMIL. We have rgb images of a baby. Depth images are in 16 and 24 bit, along with a segmented mask. The test images all have values between 791 and 957. While my images were between 0 and 255, so I added 791 to all the values. Since it was doing a cutoff at 65k, and treating the pixel values of 0 as missing. The table segmentation needs to be manually adjusted however as this affected the energy terms and subsequent mesh generation.
+Body imaging on babies is difficult because babies have trouble standing on their own. So typically they are imaged lying down. A result of this is the backside can not get imaged. The method we tried using to get a mesh of babies was a technique called SMIL\cite{hesse2018learning}. After getting it set up we got some preliminary results on fake babies that looked good. The original plan was to see how this could be used for this project too. As there are some cases where the entire body may not be able to be imagaed. This includes on an inversion table where the back is once again obscured from view of the sensors regardless of positioning. Another is the timing issue on the parabolic flights in which one could stitch together an incomplete view of the person if needed. With regards to the specifics of SMIL. We have rgb images of a baby. Depth images are in 16 and 24 bit, along with a segmented mask. The test images all have values between 791 and 957. While my images were between 0 and 255, so I added 791 to all the values. Since it was doing a cutoff at 65k, and treating the pixel values of 0 as missing. The table segmentation needs to be manually adjusted however as this affected the energy terms and subsequent mesh generation.
 \section{Microgravity Simulation}
 
 
@@ -248,25 +253,25 @@ Some other ways besides parabolic flight testing to simulate microgravity includ
 Sample protocol described as follows. Different angles from -90 to about -45 degrees. Let’s say capture at intervals x. Where x is 15 degrees. Each subject will be different on the amount of time they can handle. Let’s say we want to capture 135 / x angles for y amount of minutes. We can say y is 5 minutes, where 10 minutes is extreme, while some may only be able to handle a few minutes. How much does it take for a subject to go back to baseline? Let’s say y +- e minutes, where e is 0. So to capture one angle will take 10 minutes if it’s 15 degrees, that’s 9 takes. Which is about 90 minutes. Plus some time to get in and out. We can assume about 2 hours. So 30 athletes will take 60 hours. There are of course different considerations for the angle interval x, and time interval y. The main thing depends on time constraints and subject health. The protocol could be reversed too, to see if the order of inversion has an effect. The inversion table itself is 58” x 29” x 61”. Currently one camera can be attached to the inversion table with a stick and clamp. For inversion table imaging, it would require the single sensor moving protocol. Same goes for gravity boots. 
 
 \section{Mesh Quality}
-There are various ways of ranking mesh quality. One such is using a human to rate the quality. With enough supervision, one could create a deep learning model to output mesh quality. This is quite time consuming. Another is to run each mesh through different pipelines and see how it performs on the end result for getting values such as body composition. This methodology is also good but our current methodology is not entirely automated. The method may not give the best accuracy but is completely automated in comparison to the previous approaches. There are many ways of defining similarity. One such way with text is to first perform some type of learning such as next word prediction in word2vec and then take the first feature set known as embeddings and use them as a dense representation. Upon which people have taken measures such as cosine angle similarity which can work better than euclidean distance sometimes in high dimesnional data. More advanced methods include using a neural network such as a siamese neural network which runs two pieces of text through the same network, obtains a final representation, and outputs a similarity score using a kernel function or something as previously mentioned like cosine similarity \cite{bertinetto2016fully}. The need for this in text comes from the fact that there is no precise highly correlated numerical representation for text, rather it is highly context dependent. With images, as simple way is to take a simple l1 or l2 distance at each pixel and channel. Neural networks of course can also be used again. Other methods may include using neighborhood information which can reduce the impact of outliers such as through a gaussian distribution summation. Meshes are similar in the sense they are numerically represented like images. But they are different because there is no direct correlation between vertices like that of images which are aligned by x-y position. In this case, once again, one can use a neural network and get some intermediate representation and get the similarity from there. Due to time limitations, I perform a simple method for mesh similarity. This method is used in often in the fusion of meshes and/or alighment of meshes. It is known as iterative closest point (icp).
+There are various ways of ranking mesh quality. One such is using a human to rate the quality. With enough supervision, one could create a deep learning model to output mesh quality. This is quite time consuming. Another is to run each mesh through different pipelines and see how it performs on the end result for getting values such as body composition. This methodology is also good but our current methodology is not entirely automated. The method may not give the best accuracy but is completely automated in comparison to the previous approaches. There are many ways of defining similarity. One such way with text is to first perform some type of learning such as next word prediction in word2vec and then take the first feature set known as embeddings and use them as a dense representation. Upon which people have taken measures such as cosine angle similarity which can work better than euclidean distance sometimes in high dimensional data. More advanced methods include using a neural network such as a siamese neural network which runs two pieces of text through the same network, obtains a final representation, and outputs a similarity score using a kernel function or something as previously mentioned like cosine similarity \cite{bertinetto2016fully}. The need for this in text comes from the fact that there is no precise highly correlated numerical representation for text, rather it is highly context dependent. With images, as simple way is to take a simple l1 or l2 distance at each pixel and channel. Neural networks of course can also be used again. Other methods may include using neighborhood information which can reduce the impact of outliers such as through a gaussian distribution summation. Meshes are similar in the sense they are numerically represented like images. But they are different because there is no direct correlation between vertices like that of images which are aligned by x-y position. In this case, once again, one can use a neural network and get some intermediate representation and get the similarity from there. Due to time limitations, I perform a simple method for mesh similarity. This method is used in often in the fusion of meshes and/or alignment of meshes. It is known as iterative closest point (icp).
 
 One more well known distance metric worth mentioning is the Hausdorff distance which is a point estimate \cite{huttenlocher1993comparing}:
 \begin{equation}
 	d_h(X, Y) = max{sup(inf(d(x, y),sup(inf(d(x,y))}, x\in X, y\in Y
 \end{equation}
-Where sup is suprememum and inf is infimum.
+Where sup is supremum and inf is infimum.
 Iterative closest points is as follows:
 \begin{equation}
 	E(R, t) = \frac{1}{N_p}\sum_{i=1}^{N_p}||x_i - Rp_i - t||^2
 \end{equation}
 $x_i$ and $p_i$ are corresponding points.
-While in general, there are many performance things done for this algorithm. With t representing translation and R representing rotation. We do not have to consider these because our lack of dynamacy. Thus our problem is simplified. On top of this, I perform quadric edge collapse reduction to reduce the seach space as a form of sampling \cite{hussain2004efficient}.
-The above may be considered as geometric measurments of quality, which do not correlate necessarily with human visual perception. So although I try this metric. I also try another metric, that which is the number of connected components in the graph. Where a connection between two vertices is defined as a face that includes those two vertices.
+While in general, there are many performance things done for this algorithm. With t representing translation and R representing rotation. We do not have to consider these because our lack of dynamacy. Thus our problem is simplified. On top of this, I perform quadric edge collapse reduction to reduce the seacrh space as a form of sampling \cite{hussain2004efficient}.
+The above may be considered as geometric measurements of quality, which do not correlate necessarily with human visual perception. So although I try this metric. I also try another metric, that which is the number of connected components in the graph. Where a connection between two vertices is defined as a face that includes those two vertices.
 
-It is interesting to note many previous works include mesh quality using a refernce mesh which is tried in this. But due to large variety of pose and variance caused by configuration setup, I largely do not go with this approach. Many use the similarity of the surface of the meshes and compare them that way along with visual cues if color is of importance such as contrast.
+It is interesting to note many previous works include mesh quality using a reference mesh which is tried in this. But due to large variety of pose and variance caused by configuration setup, I largely do not go with this approach. Many use the similarity of the surface of the meshes and compare them that way along with visual cues if color is of importance such as contrast.
 \chapter{Results}
 \section{Sensor Testing Results}
-The below figure shows the spatial resolution per frame of the d435. This was done to test if the spatial noise changes with the number of frames and the distance. The number of frames does not appear to have an impact; however, the spatial noise is increasing relative to the distance after an adjustment to the distance. This suggests that the closer the sensor to the object the better. However, thereis a limit to how close these sensors can get.
+The below figure shows the spatial resolution per frame of the d435. This was done to test if the spatial noise changes with the number of frames and the distance. The number of frames does not appear to have an impact; however, the spatial noise is increasing relative to the distance after an adjustment to the distance. This suggests that the closer the sensor to the object the better. However, there is a limit to how close these sensors can get.
 \begin{figure}[!htb]
 	\caption{Spatial Resolution per frame of d435}
 	\centering
@@ -296,33 +301,33 @@ Fill rate, at first may not seem that important but once you look at the actual 
 \end{figure}
 
 \subsection{Sensor Specs}
-The d435 is capable of reaching up to 100 frames per second which for this particular imaging application is not that useful, but an application in like drones for example, it could be more useful. One thing to note is that 100 frames per second is a lot especailly when combined with multiple sensors and a high quality data connection and cpu is needed to transfer the data fast enough. One can refer to the specs for more details and I just outline some of the main findings. The strong point of the azure kinect is it's large field of view in certain settings of \ang{120} by \ang{120}. While the d435 has a max depth resolution of 1280 x 720. The depth field of view for the d435 is \ang{85.2} horizontal and \ang{58} vertical. At first it was unclear the advantage this would bring but after testing, I realized the field of view is very useful in allowing the sensor to get closer to the target and allow the target to remain in the field of the view of the sensor. As getting as close as possible is very helpful. The azure kinect is meant for closer range solution as the operating range varies between modes but the low end is 0.25m and the high end is 5.46m. While the d435 boasts a max range of 15m, it can only get 1m close. So just comparing this, the azure kinect is preferred for this use case. Next I do a quick review of the color sensor. When I first spec'd these out, I didn't know the impact but after working with sensors and methods, the current methods primarily rely on the depth sensor information. It is only in the case of calibration in which the sensor configuration is changing that the color sensor is used to locate the physical calibration boards using color features. But when building up the mesh of the scene, is the depth sensor that is being used and the color sensor has no use currently, although it could potentially as it provides information unavailable in the depth sensor.
+The d435 is capable of reaching up to 100 frames per second which for this particular imaging application is not that useful, but an application in like drones for example, it could be more useful. One thing to note is that 100 frames per second is a lot especially when combined with multiple sensors and a high quality data connection and cpu is needed to transfer the data fast enough. One can refer to the specs for more details and I just outline some of the main findings. The strong point of the azure kinect is it's large field of view in certain settings of \ang{120} by \ang{120}. While the d435 has a max depth resolution of 1280 x 720. The depth field of view for the d435 is \ang{85.2} horizontal and \ang{58} vertical. At first it was unclear the advantage this would bring but after testing, I realized the field of view is very useful in allowing the sensor to get closer to the target and allow the target to remain in the field of the view of the sensor. As getting as close as possible is very helpful. The azure kinect is meant for closer range solution as the operating range varies between modes but the low end is 0.25m and the high end is 5.46m. While the d435 boasts a max range of 15m, it can only get 1m close. So just comparing this, the azure kinect is preferred for this use case. Next I do a quick review of the color sensor. When I first spec'd these out, I didn't know the impact but after working with sensors and methods, the current methods primarily rely on the depth sensor information. It is only in the case of calibration in which the sensor configuration is changing that the color sensor is used to locate the physical calibration boards using color features. But when building up the mesh of the scene, is the depth sensor that is being used and the color sensor has no use currently, although it could potentially as it provides information unavailable in the depth sensor.
 
 
 \section{Automated Anthropometry Results}
 
 \begin{figure}[!htb]
-	\caption{Training of Automated Caeasr Point Placement}
+	\caption{Training of Automated Caeasar Point Placement}
 	\centering
 \includegraphics[width=0.5\textwidth]{images/training.png}
 \end{figure}
 \begin{figure}[!htb]
-	\caption{Validation of Automated Caeasr Point Placement}
+	\caption{Validation of Automated Caeasar Point Placement}
 	\centering
 \includegraphics[width=0.5\textwidth]{images/validation.png}
 \end{figure}
  \begin{figure}[!htb]
-	\caption{Training of Automated Caeasr Point Placement without beginning}
+	\caption{Training of Automated Caeasar Point Placement without beginning}
 	\centering
 \includegraphics[width=0.5\textwidth]{images/train_close.png}
 \end{figure}
 \begin{figure}[!htb]
-	\caption{Validation of Automated Caeasr Point Placement without beginning}
+	\caption{Validation of Automated Caeasar Point Placement without beginning}
 	\centering
 \includegraphics[width=0.5\textwidth]{images/val_close.png}
 \end{figure}
 
-We can see the training and validation errors quickly go down after about 10 epochs possibly from simply predicting the mean value of the output, then continues to go down very slowly. There is no sign of overfitting as the validation loss and training loss are similar to each other. Because only 1024 points are used, this greatly inhibits the capability of the netowrk to learn but was used for quick demonstration purposes. The number does not give me much intuition about the quality of the points. There are a couple ways to do this. One is to see how the final body shape composition results are and the other is to visualize the data. I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm  I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm. 
+We can see the training and validation errors quickly go down after about 10 epochs possibly from simply predicting the mean value of the output, then continues to go down very slowly. There is no sign of overfitting as the validation loss and training loss are similar to each other. Because only 1024 points are used, this greatly inhibits the capability of the network to learn but was used for quick demonstration purposes. The number does not give me much intuition about the quality of the points. There are a couple ways to do this. One is to see how the final body shape composition results are and the other is to visualize the data. I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm  I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm. 
 
 \begin{figure}[!htb]
 	\caption{Mesh colored by labels}
@@ -330,7 +335,7 @@ We can see the training and validation errors quickly go down after about 10 epo
 	\includegraphics[width=0.5\textwidth]{images/mesh_coloring.png}
 \end{figure}
 
-For segmentation, I frame the problem in terms of classification.
+For semantic segmentation, I frame the problem in terms of classification. First I need to label the points. I do this first by taking the closest landmark. An example is shown in the appendix, where every point is labeled by the closest landmark. A benefit is preventing overfitting and less training time, the downside is reduced performance.
 
 \section{Graph Neural Network and Catboost Body Composition Results}
 
@@ -338,8 +343,25 @@ Some basic data exploration was done like counting of missing data. Distribution
 
 Previous best results for RMSE on male were 3.07kg and 2.63kg for female while these results average across genders with a validation RMSE of 2.44kg. Demonstrating non-linearities in the dataset.
 
+
+\begin{figure}[!htb]
+	\caption{Labels Classification front}
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/labels_classification_front.png}
+\end{figure}
+
+Here I show the labels classification front side with point placement in meshlab. Next is the predicted labels classification front side random example with point placement in meshlab.
+
+\begin{figure}[!htb]
+	\caption{Labels Classification predicted front}
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/prediction_classification_front.png}
+\end{figure}
+
+It's clear the impact of the labelling methodology and the impact on the predictions which are more spread apart than they should be.
+
 \section{Parabolic Setup}
-The fligh was postponed. Several tries were done. Originally a multi-post base was designed. This added support but also complexity. Which is why a single pole was chosen over it. Along with this, the single pole was quite stable as the weight of the sensors is light.
+The flight was postponed. Several tries were done. Originally a multi-post base was designed. This added support but also complexity. Which is why a single pole was chosen over it. Along with this, the single pole was quite stable as the weight of the sensors is light. One interesting thing is that the rotation speed of the turntable by its knob is not linear as shown in the appendix. It appears to be exponential because of the motor and components used to spin the platform.
 
 \section{3d Imaging Testing Results}
 
@@ -396,7 +418,6 @@ The fligh was postponed. Several tries were done. Originally a multi-post base w
 	\includegraphics[width=0.7\textwidth]{images/depth_resolution.png}
 \end{figure}
 
-
 \begin{figure}[!htb]
 	\caption{Mannequin imaging with ideal settings}
 	\centering
@@ -412,7 +433,7 @@ We can see how at this setting, a higher frame rate helps with the imaging. Ther
 	\includegraphics[width=0.7\textwidth]{images/en_inversion.png}
 \end{figure}
 
-
+From these inversion table images one can see clear differences in the body appearance which would be picked up by optical sensors.
 
 \begin{figure}[!htb]
 	\caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
@@ -422,16 +443,20 @@ We can see how at this setting, a higher frame rate helps with the imaging. Ther
 
 
 \section{Mannequin Imaging}
-The best results for imaging come with a single moving sensor. As this sensor can capture different parts of the body more easily than when the sensors are static and the object is moving. In general frame rate helps with reconstruction especially when there is more motion of the object. This is the case when our turntable is rotating at maximum speed. It was noticed that minimizing laser interference helped with the reconstruction. This happens when multiple sensors emit infra-red, they can interact with each other. For the rotation speed of the turntable, slower is better because it makes it easier for tracking of the body. With depth resolution, higher resolution helps but is interesting to notethat this appears to taper off once the resolution reaches 640 x 480. The closest 3 sensors can get to a 6 foot person a turntable is about 3 feet because the calibration pattern needs to be seen consecutively in pairs of rgb sensors. Thus the single moving sensor is able to achieve very nice results by getting a couple feet away. Along with this, there is no need for matching each sensor up to each other, which may give some incorrect results.
+The best results for imaging come with a single moving sensor. As this sensor can capture different parts of the body more easily than when the sensors are static and the object is moving. In general frame rate helps with reconstruction especially when there is more motion of the object. This is the case when our turntable is rotating at maximum speed. It was noticed that minimizing laser interference helped with the reconstruction. This happens when multiple sensors emit infra-red, they can interact with each other. For the rotation speed of the turntable, slower is better because it makes it easier for tracking of the body. With depth resolution, higher resolution helps but is interesting to notethat this appears to taper off once the resolution reaches 640 x 480. The closest 3 sensors can get to a 6 foot person a turntable is about 3 feet because the calibration pattern needs to be seen consecutively in pairs of rgb sensors. Thus the single moving sensor is able to achieve very nice results by getting a couple feet away. Along with this, there is no need for matching each sensor up to each other, which may give some incorrect results. It is the only live method that is able to obtain a reconstruction of the hands. It is interesting to note the artifacts between the arm and the body and the legs and the body. As the parts spread further apart, the artifacts decrease. For real human imaging, this problem is less of a problem as for the arms, one can use the t-pose which essentially gets rid of all of these problems near the arms. With regards to the lower body, once again. people can split their legs further apart than this mannequin. It is also difficult to maintain the mannequin upright by itself as I spread its limbs further and further apart due to decreased stability.
 
-
+\section{Mesh Quality Results}
+Connected components results are shown in the appendix. In general, it worked as expected. The worst meshes often had many separate islands and the high quality meshes were often well connected. However, there was the case in which a mesh with low resolution was very smooth and was mostly connected resulting in the highest score, but in terms of visual quality, it doesn't look that great. Many have shown the connection before between a difficulty in creating a score that is always correlated with visual quality. However, this may not be that important as its not totally clear to the correlation between visual quality of a mesh by a human and the final performance of a model that uses this as input.
+For euclidean distance, it is very sensitive to noise and artifacts. The primary downside is shown from the image in the appendix. Where it doesn't look good but the euclidean distance is low. When overlaying this mesh with the reference mesh, we see why as the points are totally contained within the reference mesh.
 \chapter{Conclusion}
 
 I did a comparison of various 3d imaging sensors. I found that the closer the sensor to the object, the less spatial noise; however there is a certain minimum distance for each sensor that it can image.So in general one wants to get the sensor as close as possible beyond this minimum distance. The D435 had the lowest error when using a stationary target. The temporal noise for the sensors were all extremely low. Fill rate had interesting results with the Kinect 360 having the highest fill rate. While the azure kinect had the lowest fill rate. One can clearly see the poor fill rate when looking at the depth image of the azure kinect. It would seem like one of the reasons they did this was to boost the accuracy of the sensor on pixels it was sure of. While the previous kinects have these edge problems, they still reported a value regardless of its accuracy.
+
+Configuration testing was done using a quantitative procedure to measure the resulting 3d reconstructed meshes using a methodical parameter tuning approach.
 
 The graph neural network is the first method to use deep learning to automatically pick caesar points. The performance could be greatly improved with more data. Currently only about 1500 scans were used. This is because each scan also has to be human labelled with 75 points which is time consuming.
 
 Microgravity simulation hypothetical protocols were drafted for inversion table imaging. Some inversion table imaging was done without reconstruction. The main difficulty with this is removing the table from the body.
 
-Finally, a system to image people in parabolic flight was designed and constructed for eventual use in space by astronauts.
+Finally, a system to image people in parabolic flight was designed and constructed for eventual use in space by astronauts which can be bolted down to the aircraft/spacecraft floor.
 
