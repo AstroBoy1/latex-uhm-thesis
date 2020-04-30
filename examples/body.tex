@@ -105,23 +105,23 @@ The Ceasar dataset (Civilian American and European Surface Anthropometry Resourc
 \begin{figure}[!htb]
 	\caption{Fit3d Scanner}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/fit3d.jpg}
+	\includegraphics[width=0.4\textwidth]{images/fit3d.jpg}
 \end{figure}
 \begin{figure}[!htb]
 	\caption{Naked Labs Scanner}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/naked_labs.jpg}
+	\includegraphics[width=0.4\textwidth]{images/naked_labs.jpg}
 \end{figure}
 \begin{figure}[!htb]
 	\caption{Styku Scanner}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/styku.jpg}
+	\includegraphics[width=0.4\textwidth]{images/styku.jpg}
 \end{figure}
 \section{3d Optical Scanners}
 \begin{figure}[!htb]
 	\caption{Sizestream Scanner}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/sizestream.jpg}
+	\includegraphics[width=0.4\textwidth]{images/sizestream.jpg}
 \end{figure}
 
 I start off by showing a variety of 3d scanning machines. They use kinects and intel sensors. Kinects are time of flight and intel utilize traditional stereovision.
@@ -137,10 +137,10 @@ Further information and review of state of the art methods is given in the paper
 In 2005, Brett Allen wrote his phd thesis on learning body shape models from real-world data \cite{allen2005learning}. Both sensor technology and algorithms have come a long way since then. With a major dataset coming out of an SAE project starting in 1998. This data is not public however is the first major dataset with anthropometric measurements along with 3D stitched models from scanning of 2400 men and women.
 
 \section{3d Neural Networks}
-One of the seminal deep learning papers on 3d input was PointNet \cite{DBLP:journals/corr/QiSMG16}. It was a method used for classification and part/semantic segmentation. A couple years later, dynamic graph convolutional neural network took this further by using dynamic updates to the graph \cite{DBLP:journals/corr/abs-1801-07829}. While these methods are general, there are also more specific methods for reconstruction. A systematic approach for constructing 3d human models from 2d images \cite{5645897}. The Planck Institute published results on obtaining a mesh from a single 2d image using a combination of their previous conventional method and deep learning \cite{kolotouros2019learning}.The method uses a CNN followed by their previous work SMPL and these use a self improving loop. This was tried briefly in this project. Deformable Shape Completion with Graph Convolutional Autoencoders was considered as the paper shows results on taking in an essentially partial mesh and completing it \cite{litany2018deformable}. This was put on hold though because the code is not open source and would have to be re-implemented. 
+One of the seminal deep learning papers on 3d input was PointNet \cite{DBLP:journals/corr/QiSMG16}. It was a method used for classification and part/semantic segmentation. A couple years later, dynamic graph convolutional neural network took this further by using dynamic updates to the graph \cite{DBLP:journals/corr/abs-1801-07829}. While these methods are general, there are also more specific methods for reconstruction. A systematic approach for constructing 3d human models from 2d images \cite{5645897}. The Planck Institute published results on obtaining a mesh from a single 2d image using a combination of their previous conventional method and deep learning \cite{kolotouros2019learning}.The method uses a CNN followed by their previous work SMPL and these use a self improving loop. This was tried briefly in this project. Deformable Shape Completion with Graph Convolutional Autoencoders was considered as the paper shows results on taking in an essentially partial mesh and completing it \cite{litany2018deformable}. 
 
 \section{Sensor testing}
-Several papers have done sensor testing with depth cameras. Overall methodology was studied on these papers \cite{sophian2017evaluation} \cite{khoshelham2012accuracy} \cite{langmann2012depth} \cite{sankowski2017estimation}.
+Several papers have done sensor testing with depth cameras. Overall methodology was studied in these papers \cite{sophian2017evaluation} \cite{khoshelham2012accuracy} \cite{langmann2012depth} \cite{sankowski2017estimation}.
 
 
 \section{Landmark prediction}
@@ -196,7 +196,7 @@ We bought and have an art easel to hold the chart. A tripod for the camera. Alon
 \begin{figure}[!htb]
 	\caption{Sensor Testing Setup}
 	\centering
-	\includegraphics[width=0.5\textwidth, angle=0]{images/sensor_testing.png}
+	\includegraphics[width=0.4\textwidth, angle=0]{images/sensor_testing.png}
 \end{figure}
 
 \subsection{Custom Testing Metrics}
@@ -229,7 +229,7 @@ The figure below is what the general setup looks like.
 \begin{figure}[!htb]
 	\caption{Astro 3d Imaging Setup}
 	\centering
-	\includegraphics[width=0.5\textwidth, angle=-90]{images/astro_setup.jpg}
+	\includegraphics[width=0.3\textwidth, angle=0]{images/mannequin.png}
 \end{figure}
 
 The specific maneuver of the aircraft is ascending at \ang{45} followed by flattening the plane out followed by \ang{45} nose low fall. The G-ForceOne contains 36 seats and is 60 feet long and 10 feet wide. Due to safety concerns, the maximum height of any equipment is 60 inches. The aircraft contains attach points that are 20" x 20" (+/-1/16"). Bolt spacers are used with 3/8-24UNF threaded holes along with AN6 steel bolts for securement of equipment. Other requirements included the material be at least 1/2" thick and 24" x 24" minimum. As such, a wood board was used that is 24" x 24". This was chosen over metal because of the lessening of vibration and for ease of drilling. Strap for carrying and anchoring are used including: CGU-1/B, S0203-0338-B, and 104410P. The power type aboard to be used is 115 volts ac, 60HZ, three phase. The aircraft lighting is at 5600 kelvin and are LEDs, suitable for general photography and this type of imaging. On-board tools are properly labeled and to be stored in a toolbox. Before flight, a test readiness review is required.
@@ -245,7 +245,7 @@ Body imaging on babies is difficult because babies have trouble standing on thei
 \begin{figure}[!htb]
 	\caption{Inversion Table}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/inversion.jpg}
+	\includegraphics[width=0.4\textwidth]{images/inversion.jpg}
 \end{figure}
 \subsection{Underwater Imaging}
 Some other ways besides parabolic flight testing to simulate microgravity include gravity boots, inversion tables, and underwater imaging. The protocols were developed for these but scanning of participants was halted due to coronavirus. Planning for underwater imaging was briefly explored. A 2016 paper by Disney research \cite{digumarti2016underwater} used intel realsense cameras and a custom capture device. They demonstrated how calibration is different underwater along with the refraction model required. With such results, one could go on to perform 3d reconstruction from this mapping. Some things that have not been before include a complete scan of human bodies underwater which may require a scanning protocol and/or multiple sensors. These are a work in progress for this project.
@@ -347,7 +347,7 @@ Previous best results for RMSE on male were 3.07kg and 2.63kg for female while t
 \begin{figure}[!htb]
 	\caption{Labels Classification front}
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/labels_classification_front.png}
+	\includegraphics[width=0.5\textwidth]{images/labels_classification_front.png}
 \end{figure}
 
 Here I show the labels classification front side with point placement in meshlab. Next is the predicted labels classification front side random example with point placement in meshlab.
@@ -355,7 +355,7 @@ Here I show the labels classification front side with point placement in meshlab
 \begin{figure}[!htb]
 	\caption{Labels Classification predicted front}
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/prediction_classification_front.png}
+	\includegraphics[width=0.5\textwidth]{images/prediction_classification_front.png}
 \end{figure}
 
 It's clear the impact of the labelling methodology and the impact on the predictions which are more spread apart than they should be.
@@ -382,7 +382,7 @@ The flight was postponed. Several tries were done. Originally a multi-post base 
 \begin{figure}[!htb]
 	\caption{Mannequin imaged at 90 frames per second}
 	\centering
-	\includegraphics[width=0.2\textwidth]{images/90fps_mannequin.png}
+	\includegraphics[width=0.1\textwidth]{images/90fps_mannequin.png}
 \end{figure}
 
 
@@ -395,21 +395,21 @@ The flight was postponed. Several tries were done. Originally a multi-post base 
 \begin{figure}[!htb]
 	\caption{Mannequin imaged with a laser on and off}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/laser.png}
+	\includegraphics[width=0.2\textwidth]{images/laser.png}
 \end{figure}
 
 
 \begin{figure}[!htb]
 	\caption{Mannequin 90fps, 30fps, and 6fps, at full rotation speed}
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/framing.png}
+	\includegraphics[width=0.4\textwidth]{images/framing.png}
 \end{figure}
 
 
 \begin{figure}[!htb]
 	\caption{Mannequin 100, 50, 9 percent speeds}
 	\centering
-	\includegraphics[width=0.7\textwidth]{images/rotation.png}
+	\includegraphics[width=0.5\textwidth]{images/rotation.png}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -427,36 +427,22 @@ The flight was postponed. Several tries were done. Originally a multi-post base 
 
 
 We can see how at this setting, a higher frame rate helps with the imaging. There is more noise at 6 frames per second and it looks like the background is more part of the body because the sensor has more difficulty tracking the larger change in positioning of the mannequin.
-\begin{figure}[!htb]
-	\caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
-	\centering
-	\includegraphics[width=0.7\textwidth]{images/en_inversion.png}
-\end{figure}
-
-From these inversion table images one can see clear differences in the body appearance which would be picked up by optical sensors.
-
-\begin{figure}[!htb]
-	\caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
-	\centering
-	\includegraphics[width=0.7\textwidth]{images/mw_inversion.png}
-\end{figure}
-
 
 \section{Mannequin Imaging}
 The best results for imaging come with a single moving sensor. As this sensor can capture different parts of the body more easily than when the sensors are static and the object is moving. In general frame rate helps with reconstruction especially when there is more motion of the object. This is the case when our turntable is rotating at maximum speed. It was noticed that minimizing laser interference helped with the reconstruction. This happens when multiple sensors emit infra-red, they can interact with each other. For the rotation speed of the turntable, slower is better because it makes it easier for tracking of the body. With depth resolution, higher resolution helps but is interesting to notethat this appears to taper off once the resolution reaches 640 x 480. The closest 3 sensors can get to a 6 foot person a turntable is about 3 feet because the calibration pattern needs to be seen consecutively in pairs of rgb sensors. Thus the single moving sensor is able to achieve very nice results by getting a couple feet away. Along with this, there is no need for matching each sensor up to each other, which may give some incorrect results. It is the only live method that is able to obtain a reconstruction of the hands. It is interesting to note the artifacts between the arm and the body and the legs and the body. As the parts spread further apart, the artifacts decrease. For real human imaging, this problem is less of a problem as for the arms, one can use the t-pose which essentially gets rid of all of these problems near the arms. With regards to the lower body, once again. people can split their legs further apart than this mannequin. It is also difficult to maintain the mannequin upright by itself as I spread its limbs further and further apart due to decreased stability.
 
 \section{Mesh Quality Results}
 Connected components results are shown in the appendix. In general, it worked as expected. The worst meshes often had many separate islands and the high quality meshes were often well connected. However, there was the case in which a mesh with low resolution was very smooth and was mostly connected resulting in the highest score, but in terms of visual quality, it doesn't look that great. Many have shown the connection before between a difficulty in creating a score that is always correlated with visual quality. However, this may not be that important as its not totally clear to the correlation between visual quality of a mesh by a human and the final performance of a model that uses this as input.
-For euclidean distance, it is very sensitive to noise and artifacts. The primary downside is shown from the image in the appendix. Where it doesn't look good but the euclidean distance is low. When overlaying this mesh with the reference mesh, we see why as the points are totally contained within the reference mesh.
+For euclidean distance, it is very sensitive to noise and artifacts. The primary downside is shown from the image in the appendix. Where it doesn't look good but the euclidean distance is low. When overlaying this mesh with the reference mesh, we see why as the points are totally contained within the reference mesh. It is interesting to create a graph of the parameters vs the error function. Some are shown including the depth frame rate and the total color resolution. From the graph, one can see that the optimal frame rate is actually at 30-60 frames per second for live reconstruction, possibly due to performance constraints, the 90 frames per second does not perform as well.
 \chapter{Conclusion}
 
-I did a comparison of various 3d imaging sensors. I found that the closer the sensor to the object, the less spatial noise; however there is a certain minimum distance for each sensor that it can image.So in general one wants to get the sensor as close as possible beyond this minimum distance. The D435 had the lowest error when using a stationary target. The temporal noise for the sensors were all extremely low. Fill rate had interesting results with the Kinect 360 having the highest fill rate. While the azure kinect had the lowest fill rate. One can clearly see the poor fill rate when looking at the depth image of the azure kinect. It would seem like one of the reasons they did this was to boost the accuracy of the sensor on pixels it was sure of. While the previous kinects have these edge problems, they still reported a value regardless of its accuracy.
+I did a comparison of various 3d imaging sensors. I found that the closer the sensor to the object, the less spatial noise; however there is a certain minimum distance for each sensor that it can image.So in general one wants to get the sensor as close as possible beyond this minimum distance. This isi especially true with 3d reconstruction which having the sensors as close as possible to the target really helps with the mesh quality which helps models obtain body composition from the data. The D435 had the lowest error when using a stationary target. The temporal noise for the sensors were all extremely low. Fill rate had interesting results with the Kinect 360 having the highest fill rate. While the azure kinect had the lowest fill rate. One can clearly see the poor fill rate when looking at the depth image of the azure kinect. It would seem like one of the reasons they did this was to boost the accuracy of the sensor on pixels it was sure of. While the previous kinects have these edge problems, they still reported a value regardless of its accuracy. The D415 has much worse fill rate compared to the D435, although the amount of noise is less, this noise is very minimal and not a problem in the reconstruction process.
 
-Configuration testing was done using a quantitative procedure to measure the resulting 3d reconstructed meshes using a methodical parameter tuning approach.
+Configuration testing was done using a quantitative procedure to measure the resulting 3d reconstructed meshes using a methodical parameter tuning approach. A combination of human scoring and automated scoring metrics involving distance in the euclidean space along with the number of connected components helped to show the best parameters for the sensors and the distances. The primary takeaways are the laser power and frame rate for the depth sensor are the most important settings, which should be as high as possible to get the best quality mesh. While in terms of setup, the main thing is the distance from the sensors to the object. When using three sensors, the only way for this to happen is for the sensors to be vertical with respect to the floor because the horizontal configuration does not allow the sensors to manually calibrate. 
 
-The graph neural network is the first method to use deep learning to automatically pick caesar points. The performance could be greatly improved with more data. Currently only about 1500 scans were used. This is because each scan also has to be human labelled with 75 points which is time consuming.
+The graph neural network is the first method to use deep learning to automatically pick caesar points. The performance could be greatly improved with more data. Currently only about 1500 scans were used. This is because each scan also has to be human labelled with 75 points which is time consuming. The results could be better with more data as the input is highly dimensional. An interesting question is the formation of the problem as regression vs semantic segmentation. With regression the model can acheive a perfect score unlike segmentation as the labels may not always correspond exactly to the input. In some ways the training is easier because there are only 75 points to learn from. On the otherhand, the range of the output is unrestricted and highly sensitive to visual perception. As an error of 0.1 might seem small, but in the mesh, it is very large when looked at. For semantic segmentation, we always predict on the mesh; however, the difficulty is the sheer amount of training data. In one case, labelling each point under 75 labels, overfitting is less of a problem; however, performance may be reduced. 75 labels requires an algorithm to first label the points accordingly from the human labels. While 76 labels, with an other category, makes sense, the amount of 76 labels is quite overwhelming for the learning of the model. So minimizing the error of the 76th label results in lower error than improving the performance of the 75 labels. Overall, sub sampling the mesh down to 2048 faces and about 1024 vertices proved easier for the network to learn from than 4096 faces. Hypothetically in the limit, one would assume with enough data, a model should take in all of the data without dimensionality reduction though.
 
-Microgravity simulation hypothetical protocols were drafted for inversion table imaging. Some inversion table imaging was done without reconstruction. The main difficulty with this is removing the table from the body.
+Microgravity simulation hypothetical protocols were drafted for inversion table imaging. Some inversion table imaging was done without reconstruction. The main difficulty with this is removing the table from the body. While underwater protocols were brainstormed and other labs were visited for inspiration.
 
-Finally, a system to image people in parabolic flight was designed and constructed for eventual use in space by astronauts which can be bolted down to the aircraft/spacecraft floor.
+Finally, a system to image people in parabolic flight was designed and constructed for eventual use in space by astronauts which can be bolted down to the aircraft/spacecraft floor. The main requirements included the height not being over 60 inches in the plane. Also, the holes in the platform need to fit their bolt requirements with some room for error. The platform which is 20"x20" is standard for zero g usage.
 
