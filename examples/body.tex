@@ -309,7 +309,7 @@ The d435 and zed are capable of reaching up to 100 frames per second which for t
 We can see the training and validation errors quickly go down after about 10 epochs possibly from simply predicting the mean value of the output, then continues to go down very slowly. There is no sign of overfitting as the validation loss and training loss are similar to each other. Because only 1024 points are used, this greatly inhibits the capability of the network to learn but was used for quick demonstration purposes. The number does not give me much intuition about the quality of the points. There are a couple ways to do this. One is to see how the final body shape composition results are and the other is to visualize the data. I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm  I decide to visualize the data because it could be helpful as a guide for humans if the points aren't place accurately by the algorithm. Although hyper-parameter tuning would be helpful, it was not the focus of this project. 
 
 \begin{figure}[!htb]
-	\caption{Mesh colored by labels}
+	\caption{Mesh colored by Human labels}
 	\centering
 	\includegraphics[width=0.5\textwidth]{images/mesh_coloring.png}
 \end{figure}
@@ -324,18 +324,12 @@ Previous best results for RMSE on male were 3.07kg and 2.63kg for female while t
 
 
 \begin{figure}[!htb]
-	\caption{Labels Classification front}
+	\caption{Random Validation Results of Human labelled vs. Network prediction using classification with 2048 faces}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/labels_classification_front.png}
+	\includegraphics[width=1\textwidth]{images/label_pred.png}
 \end{figure}
 
 Here I show the labels classification front side with point placement in meshlab. Next is the predicted labels classification front side random example with point placement in meshlab.
-
-\begin{figure}[!htb]
-	\caption{Labels Classification predicted front}
-	\centering
-	\includegraphics[width=0.5\textwidth]{images/prediction_classification_front.png}
-\end{figure}
 
 It's clear the impact of the labelling methodology and the impact on the predictions which are more spread apart than they should be. More results are shown in the appendix. The main takeaways are the advantages of dimensionality reduction on the mesh for better training results initially, how 76 labels gets worse performance than 75 labels, and the difficulty of regression to predict points on the mesh, requiring a closest points classification to top it off.
 
@@ -347,7 +341,7 @@ The flight was postponed. Several tries were done. Originally a multi-post base 
 \begin{figure}[!htb]
 	\caption{Single d435 sensor moving imaging}
 	\centering
-	\includegraphics[width=0.5\textwidth]{images/dustin.png}
+	\includegraphics[width=0.5\textwidth]{images/dustin_di.png}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -356,20 +350,6 @@ The flight was postponed. Several tries were done. Originally a multi-post base 
 	\includegraphics[width=0.5\textwidth]{images/mw_form.png}
 \end{figure}
 
-
-
-\begin{figure}[!htb]
-	\caption{Mannequin imaged at 90 frames per second}
-	\centering
-	\includegraphics[width=0.2\textwidth]{images/90fps_mannequin.png}
-\end{figure}
-
-
-\begin{figure}[!htb]
-	\caption{Mannequin imaged at 6 frames per second}
-	\centering
-	\includegraphics[width=0.2\textwidth]{images/6fps_mannequin.png}
-\end{figure}
 
 \begin{figure}[!htb]
 	\caption{Mannequin imaged with a laser on and off}
