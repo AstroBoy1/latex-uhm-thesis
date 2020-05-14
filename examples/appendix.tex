@@ -13,19 +13,19 @@
 \chapter{Some Other Results}
 
 \begin{figure}[h]
-        \caption{Inversion table depth image from the intel d435 in color}
+        \caption{Inversion table depth image from the intel d435 in color at a rotated view to emphasize the 3D capture and how pixels directly behind the line of sight of the sensor to object will show up as invalid dark pixels.}
         \centering
         \includegraphics[width=0.5\textwidth]{images/inversion_depth.png}
 \end{figure}
  
 \begin{figure}[h]
-        \caption{Error vs. Depth Frame Rate}
+        \caption{Euclidean Error vs. Depth Frame Rate show 30 and 60 frames per second as the best.}
         \centering
         \includegraphics[width=0.7\textwidth]{images/error_depth_frame.png}
 \end{figure}
  
 \begin{figure}[h]
-        \caption{Error vs. Total Color Resolution}
+        \caption{Error vs. Total Color Resolution results show the lowest resolution as the best which hypothetically would be because higher resolution slows down the performance and color is not used for the reconstruction after calibration has been completed.}
         \centering
         \includegraphics[width=0.7\textwidth]{images/error_color.png}
 \end{figure}
@@ -44,43 +44,43 @@
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{Missing data}
+        \caption{Missing data in the shape up data}
         \centering
         \includegraphics[]{images/missing_data.png}
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{HBA1C Distribution}
+        \caption{HBA1C Distribution in the shape up data}
         \centering
         \includegraphics[width=0.5\textwidth]{images/hba1c.png}
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{WBTOT FAT Distribution}
+        \caption{WBTOT FAT Distribution in the shape up data}
         \centering
         \includegraphics[width=0.5\textwidth]{images/wbtot_fat.png}
 \end{figure}
 
 
 \begin{figure}[!htb]
-        \caption{VFAT MASS Distribution}
+        \caption{VFAT MASS Distribution in the shapeup data}
         \centering
         \includegraphics[width=0.5\textwidth]{images/vfat_mass.png}
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{Race Ratios Distribution}
+        \caption{Race Ratios Distribution in the shapeup data}
         \centering
         \includegraphics[width=0.5\textwidth]{images/race_ratios.png}
 \end{figure}
 \begin{figure}[!htb]
-        \caption{Fat Mass Training Table}
+        \caption{Fat Mass Training Table using Catboost}
         \centering
         \includegraphics[width=0.7\textwidth]{images/catboost_training.png}
 \end{figure}
 
 \begin{table}[!h]
-\caption{Test Table 1}
+\caption{Mannequin imaging table 1 partial parameters}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
@@ -98,7 +98,7 @@
 
 
 \begin{table}[!h]
-\caption{Test Table 1}
+\caption{Mannequin imaging table 2 partial parameters}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
@@ -113,7 +113,7 @@
 \end{table}
 
 \begin{table}[!h]
-\caption{Table Sensor Accuracy}
+\caption{Table of Sensor Accuracy by distance to the sensor (ft)}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
@@ -135,7 +135,7 @@
   round-precision     = 2, % to 2 places
 }
 \begin{table}[!h]
-\caption{Table Sensor Temporal Noise}
+\caption{Table of Sensor Temporal Noise by distance to the sensor (ft)}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
@@ -153,7 +153,7 @@
 \end{table}
 
 \begin{table}[!h]
-\caption{Table Fill Rate}
+\caption{Table of Fill Rate by distance to the sensor (ft)}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
@@ -181,19 +181,19 @@
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{Closest mesh by euclidean distance}
+        \caption{Best mesh by euclidean distance}
         \centering
         \includegraphics[width=0.2\textwidth]{images/euclidean_ideal.png}
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{A fully human labeled mesh, all 300,000 vertices colored by closest landmark}
+        \caption{A fully human labeled mesh, all 300,000 vertices colored by closest caesar landmark}
         \centering
         \includegraphics[width=0.2\textwidth]{images/full_labeled_mesh.png}
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{A subsampled human labeled mesh by color}
+        \caption{A subsampled human caesar labeled mesh by color}
         \centering
         \includegraphics[width=0.3\textwidth]{images/labeled_mesh.png}
 \end{figure}
@@ -205,18 +205,18 @@
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{Turntable speed}
+        \caption{Turntable speed non-linear speed}
         \centering
         \includegraphics[width=0.6\textwidth]{images/turntable_time.png}
 \end{figure}
 
 \begin{figure}[!htb]
-        \caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
+        \caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90} showing visual changes to the body}
         \centering
         \includegraphics[width=0.7\textwidth]{images/en_inversion_di.png}
 \end{figure}
 \begin{figure}[!htb]
-        \caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90}}
+        \caption{Inversion Table Imaging \ang{0}, \ang{30}, \ang{60}, \ang{90} showing visual changes to the body}
         \centering
         \includegraphics[width=0.7\textwidth]{images/mw_inversion_di.png}
 \end{figure}
