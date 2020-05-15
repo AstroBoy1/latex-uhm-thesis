@@ -17,13 +17,59 @@
         \centering
         \includegraphics[width=0.5\textwidth]{images/inversion_depth.png}
 \end{figure}
+
+\begin{figure}[h]
+        \caption{Three vertical sensor best setup reconstruction results}
+        \centering
+        \includegraphics[width=0.2\textwidth]{images/3sensor_man.png}
+\end{figure}
+
+
+\begin{figure}[h]
+        \caption{Zero-G Cross Section}
+        \centering
+        \includegraphics[width=1\textwidth]{images/zerog_cross.png}
+\end{figure}
+
+\begin{figure}[h]
+        \caption{Zero-G Floor}
+        \centering
+        \includegraphics[width=1\textwidth]{images/zerog_floor.png}
+\end{figure}
+
+
+\begin{figure}[h]
+        \caption{Inversion table depth image from the intel d435 in color at a rotated view to emphasize the 3D capture and how pixels directly behind the line of sight of the sensor to object will show up as invalid dark pixels.}
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/inversion_depth.png}
+\end{figure}
+
+
+\begin{figure}[h]
+        \caption{Sensor Testing Chart}
+        \centering
+        \includegraphics[width=0.5\textwidth]{images/chart_full.png}
+\end{figure}
+ 
  
 \begin{figure}[h]
         \caption{Euclidean Error vs. Depth Frame Rate show 30 and 60 frames per second as the best.}
         \centering
         \includegraphics[width=0.7\textwidth]{images/error_depth_frame.png}
 \end{figure}
- 
+  
+\begin{figure}[h]
+        \caption{Euclidean Error vs. Rotation Rate where a high speed of 100 did the worst and bringing it down to 75 helps but then performance is about the same below that speed.}
+        \centering
+        \includegraphics[width=0.7\textwidth]{images/rotation_error.png}
+\end{figure}
+  
+\begin{figure}[h]
+        \caption{Euclidean Error vs. Total Depth Resolution in which the middle setting did the best.}
+        \centering
+        \includegraphics[width=0.7\textwidth]{images/depthres_error.png}
+\end{figure}
+
 \begin{figure}[h]
         \caption{Error vs. Total Color Resolution results show the lowest resolution as the best which hypothetically would be because higher resolution slows down the performance and color is not used for the reconstruction after calibration has been completed.}
         \centering
@@ -35,12 +81,6 @@
         \caption{SPIN 3d reconstruction on single 2d rgb image}
         \centering
         \includegraphics[width=0.2\textwidth]{images/spin.png}
-\end{figure}
-
-\begin{figure}[h]
-        \caption{SMIL sample output}
-        \centering
-        \includegraphics[width=0.4\textwidth]{images/smil.png}
 \end{figure}
 
 \begin{figure}[!htb]
@@ -80,6 +120,34 @@
 \end{figure}
 
 \begin{table}[!h]
+\caption{Connected Components per Experiment excluding vertical setups because of some techincal issues faced with the algorithm}
+\centering
+\pgfplotstabletypeset[
+    col sep=comma,
+    string type,
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l}},
+    every head row/.style={before row=\hline,after row=\hline},
+    every last row/.style={after row=\hline},
+    ]{tables/cc.csv}
+\end{table}
+
+
+\begin{table}[!h]
+\caption{Manual and Euclidean Error Results per Experiment}
+\centering
+\pgfplotstabletypeset[
+    col sep=comma,
+    string type,
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l}},
+    columns/.style={column type={|l}},
+    every head row/.style={before row=\hline,after row=\hline},
+    every last row/.style={after row=\hline},
+    ]{tables/manual.csv}
+\end{table}
+
+\begin{table}[!h]
 \caption{Mannequin imaging table 1 partial parameters}
 \centering
 \pgfplotstabletypeset[
@@ -95,7 +163,6 @@
     every last row/.style={after row=\hline},
     ]{tables/test.csv}
 \end{table}
-
 
 \begin{table}[!h]
 \caption{Mannequin imaging table 2 partial parameters}
@@ -113,7 +180,7 @@
 \end{table}
 
 \begin{table}[!h]
-\caption{Table of Sensor Accuracy by distance to the sensor (ft)}
+\caption{Table of Sensor Accuracy by distance to the sensor (in.)}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
@@ -135,7 +202,7 @@
   round-precision     = 2, % to 2 places
 }
 \begin{table}[!h]
-\caption{Table of Sensor Temporal Noise by distance to the sensor (ft)}
+\caption{Table of Sensor Temporal Noise by distance to the sensor (in.)}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
@@ -153,7 +220,7 @@
 \end{table}
 
 \begin{table}[!h]
-\caption{Table of Fill Rate by distance to the sensor (ft)}
+\caption{Table of Fill Rate by distance to the sensor (percent)}
 \centering
 \pgfplotstabletypeset[
     col sep=comma,
